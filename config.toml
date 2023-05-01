@@ -8,3 +8,23 @@ theme = "pgov"
 
 [outputs]
   home = ["HTML"]  # Add this line to specify the homepage layout
+
+[[menu.main]]
+  name = "Featured"
+  url = "/featured"
+  weight = 10
+
+[[menu.main]]
+  name = "Discover"
+  url = "/discover/"
+  weight = 20
+
+[[menu.main]]
+  name = "Communities"
+  url = "/communities/"
+  weight = 30
+
+[[menu.main]]
+  name = "About"
+  url = "/about/"
+  weight = 40
