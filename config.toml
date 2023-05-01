@@ -3,5 +3,8 @@ defaultContentLanguage = "en"
 title = 'Performance.gov'
 theme = "pgov"
 
-[outputFormats.RSS]
-  path = "rss.xml"
+[outputFormats]
+  # Ensure there are no custom settings here.
+
+[outputs]
+  # Ensure there are no custom settings here.
