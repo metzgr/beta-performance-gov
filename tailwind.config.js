@@ -1,5 +1,9 @@
 module.exports = {
-    content: ['./layouts/**/*.html', './src/**/*.js'], // Add any other paths necessary for your project
+    content: [
+        './components/**/*.{html,js}',
+        './pages/**/*.{html,js}',
+        './index.html',
+      ], // Add any other paths necessary for your project
     darkMode: false,
     theme: {
       extend: {},
