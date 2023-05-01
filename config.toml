@@ -1,10 +1,10 @@
-baseURL = 'http://metzgr.github.io/beta-performance-gov/'
+baseURL = "http://metzgr.github.io/beta-performance-gov/"
 defaultContentLanguage = "en"
-title = 'Performance.gov'
+title = "Performance.gov"
 theme = "pgov"
 
 [outputFormats]
   # Ensure there are no custom settings here.
 
 [outputs]
-  # Ensure there are no custom settings here.
+  home = ["HTML"]  # Add this line to specify the homepage layout
