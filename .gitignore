@@ -1,0 +1,21 @@
+# Node dependencies
+/node_modules/
+
+# Hugo generated files
+/public/
+/resources/_gen/
+
+# Hugo development server cache
+/hugo_cache/
+
+# Operating system files
+.DS_Store
+Thumbs.db
+
+# Editor files
+*.sublime*
+*.iml
+*.swp
+*.swo
+*.tmp
+*.bak
