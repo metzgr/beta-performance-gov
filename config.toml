@@ -2,3 +2,6 @@ baseURL = 'http://metzgr.github.io/beta-performance-gov/'
 defaultContentLanguage = "en"
 title = 'Performance.gov'
 theme = "pgov"
+
+[outputFormats.RSS]
+  path = "rss.xml"
