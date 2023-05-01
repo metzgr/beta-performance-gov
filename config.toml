@@ -1,4 +1,10 @@
 baseURL = 'http://metzgr.github.io/beta-performance-gov/'
-languageCode = 'en-us'
+defaultContentLanguage = "en"
 title = 'Performance.gov'
-theme = "Pgov"
+theme = "pgov"
+
+[outputFormats]
+  # Ensure there are no custom settings here.
+
+[outputs]
+  # Ensure there are no custom settings here.

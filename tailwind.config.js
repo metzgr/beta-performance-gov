@@ -1,12 +1,23 @@
 module.exports = {
-    purge: ['./layouts/**/*.html'],
+    content: [
+        './components/**/*.{html,js}',
+        './pages/**/*.{html,js}',
+        './index.html',
+      ], // Add any other paths necessary for your project
     darkMode: false,
     theme: {
       extend: {},
     },
     variants: {
-      extend: {},
+      extend: {
+        backgroundColor: ['responsive', 'hover', 'focus', 'active', 'disabled'],
+        borderColor: ['responsive', 'hover', 'focus', 'active', 'disabled'],
+        textColor: ['responsive', 'hover', 'focus', 'active', 'disabled'],
+        // Add any other utilities you want to extend with all variants
+      },
     },
-    plugins: [],
-  }
+    plugins: [
+      require('@tailwindcss/forms'),
+    ],
+  };
   
