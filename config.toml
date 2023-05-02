@@ -11,7 +11,7 @@ theme = "pgov"
 
 [[menu.main]]
   name = "Featured"
-  url = "/featured"
+  url = "/"
   weight = 10
 
 [[menu.main]]
