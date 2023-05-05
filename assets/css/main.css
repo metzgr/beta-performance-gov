@@ -3,3 +3,7 @@
 @import 'tailwindcss/utilities';
 
 /* Add your own custom styles below this line */
+
+.tag:hover { 
+    background-color: bg-sky-500;
+}

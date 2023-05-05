@@ -7,6 +7,9 @@ module.exports = {
     darkMode: false,
     theme: {
       extend: {},
+      fontFamily: {
+        'sans': '-apple-system',
+      }
     },
     variants: {
       extend: {
@@ -17,7 +20,7 @@ module.exports = {
       },
     },
     plugins: [
-      require('@tailwindcss/forms'),
+      require('@tailwindcss/forms', '@tailwindcss/aspect-ratio'),
     ],
   };
   

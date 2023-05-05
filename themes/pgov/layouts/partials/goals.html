@@ -1,0 +1,21 @@
+
+<!-- Filter tags -->
+<div class="flex justify-center pt-6 space-x-4">
+    <span class="hover:bg-sky-500 hover:text-white inline-flex items-center rounded-md bg-gray-50 px-2 py-1 text-xs font-medium text-gray-600 ring-1 ring-inset ring-gray-500/10">Climate</span>
+    <span class="hover:bg-sky-500 hover:text-white inline-flex items-center rounded-md bg-gray-50 px-2 py-1 text-xs font-medium text-gray-600 ring-1 ring-inset ring-gray-500/10">Racial equity</span>
+    <span class="hover:bg-sky-500 hover:text-white inline-flex items-center rounded-md bg-gray-50 px-2 py-1 text-xs font-medium text-gray-600 ring-1 ring-inset ring-gray-500/10">Economy</span>
+    <span class="hover:bg-sky-500 hover:text-white inline-flex items-center rounded-md bg-gray-50 px-2 py-1 text-xs font-medium text-gray-600 ring-1 ring-inset ring-gray-500/10">Healthcare</span>    
+</div>
+
+<!-- Renders Card Partial -->
+<div class="bg-white">
+    <div class="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-16 lg:max-w-7xl lg:px-8">
+      <div class="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:gap-x-8">
+        {{ range .Site.Data.goals }}
+          {{ if eq .goal_type "APG" }}
+            {{ partial "card.html" . }}
+          {{ end }}
+        {{ end }}
+      </div>
+    </div>
+</div>
