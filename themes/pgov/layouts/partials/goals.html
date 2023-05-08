@@ -1,11 +1,29 @@
 
-<!-- Filter tags -->
+<!-- Filter tags
 <div class="flex justify-center pt-6 space-x-4">
     <span class="hover:bg-sky-500 hover:text-white inline-flex items-center rounded-md bg-gray-50 px-2 py-1 text-xs font-medium text-gray-600 ring-1 ring-inset ring-gray-500/10">Climate</span>
     <span class="hover:bg-sky-500 hover:text-white inline-flex items-center rounded-md bg-gray-50 px-2 py-1 text-xs font-medium text-gray-600 ring-1 ring-inset ring-gray-500/10">Racial equity</span>
     <span class="hover:bg-sky-500 hover:text-white inline-flex items-center rounded-md bg-gray-50 px-2 py-1 text-xs font-medium text-gray-600 ring-1 ring-inset ring-gray-500/10">Economy</span>
     <span class="hover:bg-sky-500 hover:text-white inline-flex items-center rounded-md bg-gray-50 px-2 py-1 text-xs font-medium text-gray-600 ring-1 ring-inset ring-gray-500/10">Healthcare</span>    
 </div>
+-->
+<br><br>
+<label for="category">Choose a category:</label>
+
+<select id="category" onchange="categoryChange()">
+  <option value="All" selected>All</option>
+  <option value="Climate">Climate</option>
+  <option value="Equity">Racial Equity</option>
+  <option value="Economic development">Economy</option>
+  <option value="Domestic health">Domestic Health</option>
+  <option value="Global health">Global Health</option>
+  <option value="Agriculture">Agriculture</option>
+</select>
+
+<!-- test values
+<pre id="output1"></pre>
+<pre id="output2"></pre>
+-->
 
 <!-- Renders Card Partial -->
 <div class="bg-white">
@@ -13,9 +31,30 @@
       <div class="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:gap-x-8">
         {{ range .Site.Data.goals }}
           {{ if eq .goal_type "APG" }}
-            {{ partial "card.html" . }}
+              <div name="All, {{ .applied_tags }}">
+                {{ partial "card.html" . }}
+              </div>
           {{ end }}
         {{ end }}
       </div>
     </div>
 </div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script>
+
+  function categoryChange() {
+      var category = document.getElementById("category").value;
+      const var1 = document.querySelectorAll("div[name*=" + CSS.escape(category) + "]");
+      //output1.textContent = `Selection count: ${var1.length}`;
+      const var2 = document.querySelectorAll("div[name*=All]");
+      //output2.textContent = `Selection count: ${var2.length}`;
+      var2.forEach((userItem) => {
+        userItem.style.display = 'none'
+      });
+      var1.forEach((userItem) => {
+        userItem.style.display = 'block'
+      });
+  }
+
+</script>
