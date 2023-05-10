@@ -1,10 +1,16 @@
-<!-- Filter tags -->
-<div class="tag-buttons flex justify-center pt-6 space-x-4">
-    <button id="climate-button" class="tag hover:bg-sky-500 active:bg-sky-300 hover:text-white inline-flex items-center rounded-md bg-gray-50 px-2 py-1 text-xs font-medium text-gray-600 ring-1 ring-inset ring-gray-500/10">Climate</button>
-    <button id="equity-button" class="tag hover:bg-sky-500 hover:text-white inline-flex items-center rounded-md bg-gray-50 px-2 py-1 text-xs font-medium text-gray-600 ring-1 ring-inset ring-gray-500/10">Equity</button>
-    <button id="economy-button" class="tag hover:bg-sky-500 hover:text-white inline-flex items-center rounded-md bg-gray-50 px-2 py-1 text-xs font-medium text-gray-600 ring-1 ring-inset ring-gray-500/10">Economy</button>
-    <button id="healthcare-button" class="tag hover:bg-sky-500 hover:text-white inline-flex items-center rounded-md bg-gray-50 px-2 py-1 text-xs font-medium text-gray-600 ring-1 ring-inset ring-gray-500/10">Healthcare</button>    
+
+<div class="flex justify-center pt-6 space-x-4">
+    <span id="All" onClick="category_click(this.id)" class="hover:bg-sky-500 hover:text-white inline-flex items-center rounded-md bg-gray-50 px-2 py-1 text-xs font-medium text-gray-600 ring-1 ring-inset ring-gray-500/10">All</span>
+    <span id="Climate" onClick="category_click(this.id)" class="hover:bg-sky-500 hover:text-white inline-flex items-center rounded-md bg-gray-50 px-2 py-1 text-xs font-medium text-gray-600 ring-1 ring-inset ring-gray-500/10">Climate</span>
+    <span id="Equity" onClick="category_click(this.id)" class="hover:bg-sky-500 hover:text-white inline-flex items-center rounded-md bg-gray-50 px-2 py-1 text-xs font-medium text-gray-600 ring-1 ring-inset ring-gray-500/10">Racial equity</span>
+    <span id="Economic development" onClick="category_click(this.id)" class="hover:bg-sky-500 hover:text-white inline-flex items-center rounded-md bg-gray-50 px-2 py-1 text-xs font-medium text-gray-600 ring-1 ring-inset ring-gray-500/10">Economy</span>
+    <span id="Domestic health" onClick="category_click(this.id)" class="hover:bg-sky-500 hover:text-white inline-flex items-center rounded-md bg-gray-50 px-2 py-1 text-xs font-medium text-gray-600 ring-1 ring-inset ring-gray-500/10">Healthcare</span>    
 </div>
+
+<!-- test values
+<pre id="output1"></pre>
+<pre id="output2"></pre>
+-->
 
 <!-- Renders Card Partial -->
 <div id="all-cards" class="bg-white">
@@ -12,9 +18,29 @@
       <div class="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:gap-x-8">
         {{ range .Site.Data.goals }}
           {{ if eq .goal_type "APG" }}
-            {{ partial "card.html" . }}
+              <div name="All, {{ .applied_tags }}">
+                {{ partial "card.html" . }}
+              </div>
           {{ end }}
         {{ end }}
       </div>
     </div>
 </div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script>
+
+  function category_click(clicked_id) {
+      const var1 = document.querySelectorAll("div[name*=" + CSS.escape(clicked_id) + "]");
+      //output1.textContent = `Selection count: ${var1.length}`;
+      const var2 = document.querySelectorAll("div[name*=All]");
+      //output2.textContent = `Selection count: ${var2.length}`;
+      var2.forEach((userItem) => {
+        userItem.style.display = 'none'
+      });
+      var1.forEach((userItem) => {
+        userItem.style.display = 'block'
+      });
+  }
+
+</script>
