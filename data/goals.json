@@ -3273,8 +3273,8 @@
 		"sg_id": "",
 		"so_id": "",
 		"apg_id": "05",
-		"url_pgov_agency_12": "https://www.performance.gov/agencies/DOS/apg/goal-2/",
-		"url_pgov_agency_23": "https://www.performance.gov/agencies/USAID/apg/goal-5/",
+		"url_pgov_agency_12": "https://www.performance.gov/agencies/USAID/apg/goal-5/",
+		"url_pgov_agency_23": "",
 		"leaders4": "Trigg-Talley-DOS-recsNWxvrHaZ9WZzr,Gillian-Caldwell-USAID-recr1KhfaSk4FRCLM,Jonathan-Pershing-DOS-rec3p7HGrVHahClT,Christine-Dragisic-DOS-recBX1tigAmuTDEe,Kathryn-Stratos-USAID-recXSn35Ji1bI4BT"
 	},
 	{
@@ -3295,7 +3295,7 @@
 		"sg_id": "",
 		"so_id": "",
 		"apg_id": "02",
-		"url_pgov_agency_12": "",
+		"url_pgov_agency_12": "https://www.performance.gov/agencies/DOS/apg/goal-2/",
 		"url_pgov_agency_23": "",
 		"leaders4": ""
 	},
@@ -3318,7 +3318,7 @@
 		"so_id": "",
 		"apg_id": "06",
 		"url_pgov_agency_12": "https://www.performance.gov/agencies/DOS/apg/goal-3/",
-		"url_pgov_agency_23": "https://www.performance.gov/agencies/USAID/apg/goal-6/",
+		"url_pgov_agency_23": "",
 		"leaders4": "Gina-Abercrombie-Winstanley-DOS-recWyJyjYHKTkPizB,Neneh-Diallo-USAID-recxRCrEKfAjF9rQ"
 	},
 	{
@@ -3427,7 +3427,7 @@
 		"sg_id": "",
 		"so_id": "",
 		"apg_id": "03",
-		"url_pgov_agency_12": "",
+		"url_pgov_agency_12": "https://www.performance.gov/agencies/USAID/apg/goal-6/",
 		"url_pgov_agency_23": "",
 		"leaders4": ""
 	},
@@ -3450,7 +3450,7 @@
 		"so_id": "",
 		"apg_id": "07",
 		"url_pgov_agency_12": "https://www.performance.gov/agencies/DOS/apg/goal-1/",
-		"url_pgov_agency_23": "https://www.performance.gov/agencies/USAID/apg/goal-7/",
+		"url_pgov_agency_23": "",
 		"leaders4": "John-Nkengasong-DOS-recqLbmzWLzEQw9g,Atul-Gawande-USAID-recY5ABn42ASM83i1"
 	},
 	{
@@ -3471,7 +3471,7 @@
 		"sg_id": "",
 		"so_id": "",
 		"apg_id": "01",
-		"url_pgov_agency_12": "",
+		"url_pgov_agency_12": "https://www.performance.gov/agencies/USAID/apg/goal-7/",
 		"url_pgov_agency_23": "",
 		"leaders4": ""
 	},

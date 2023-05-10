@@ -1,0 +1,187 @@
+[
+	{
+		"Code": "005",
+		"Agency Abbreviation": "USDA",
+		"LA Name": "USDA",
+		"code2": "5",
+		"Name": "Department of Agriculture"
+	},
+	{
+		"Code": "006",
+		"Agency Abbreviation": "DOC",
+		"LA Name": "Commerce",
+		"code2": "6",
+		"Name": "Department of Commerce"
+	},
+	{
+		"Code": "007",
+		"Agency Abbreviation": "DOD",
+		"LA Name": "DOD",
+		"code2": "7",
+		"Name": "Department of Defense"
+	},
+	{
+		"Code": "009",
+		"Agency Abbreviation": "HHS",
+		"LA Name": "HHS",
+		"code2": "9",
+		"Name": "Health and Human Services"
+	},
+	{
+		"Code": "010",
+		"Agency Abbreviation": "DOI",
+		"LA Name": "DOI",
+		"code2": "10",
+		"Name": "Department of the Interior"
+	},
+	{
+		"Code": "011",
+		"Agency Abbreviation": "DOJ",
+		"LA Name": "DOJ",
+		"code2": "11",
+		"Name": "Department of Justice"
+	},
+	{
+		"Code": "012",
+		"Agency Abbreviation": "DOL",
+		"LA Name": "DOL",
+		"code2": "12",
+		"Name": "Department of Labor"
+	},
+	{
+		"Code": "014",
+		"Agency Abbreviation": "DOS",
+		"LA Name": "State",
+		"code2": "14",
+		"Name": "Department of State"
+	},
+	{
+		"Code": "015",
+		"Agency Abbreviation": "USDT",
+		"LA Name": "Treasury",
+		"code2": "15",
+		"Name": "Department of the Treasury"
+	},
+	{
+		"Code": "016",
+		"Agency Abbreviation": "SSA",
+		"LA Name": "SSA",
+		"code2": "16",
+		"Name": "Social Security Administration"
+	},
+	{
+		"Code": "018",
+		"Agency Abbreviation": "ED",
+		"LA Name": "ED",
+		"code2": "18",
+		"Name": "Department of Education"
+	},
+	{
+		"Code": "018",
+		"Agency Abbreviation": "ED",
+		"LA Name": "Education",
+		"code2": "18",
+		"Name": "Department of Education"
+	},
+	{
+		"Code": "019",
+		"Agency Abbreviation": "DOE",
+		"LA Name": "DOE",
+		"code2": "19",
+		"Name": "Department of Energy"
+	},
+	{
+		"Code": "020",
+		"Agency Abbreviation": "EPA",
+		"LA Name": "EPA",
+		"code2": "20",
+		"Name": "Environmental Protection Agency"
+	},
+	{
+		"Code": "021",
+		"Agency Abbreviation": "DOT",
+		"LA Name": "DOT",
+		"code2": "21",
+		"Name": "Department of Transportation"
+	},
+	{
+		"Code": "023",
+		"Agency Abbreviation": "GSA",
+		"LA Name": "GSA",
+		"code2": "23",
+		"Name": "General Services Administration"
+	},
+	{
+		"Code": "024",
+		"Agency Abbreviation": "DHS",
+		"LA Name": "DHS",
+		"code2": "24",
+		"Name": "Department of Homeland Security"
+	},
+	{
+		"Code": "025",
+		"Agency Abbreviation": "HUD",
+		"LA Name": "HUD",
+		"code2": "25",
+		"Name": "Department of Housing and Urban Development"
+	},
+	{
+		"Code": "026",
+		"Agency Abbreviation": "NASA",
+		"LA Name": "NASA",
+		"code2": "26",
+		"Name": "National Aeronautics and Space Administration"
+	},
+	{
+		"Code": "027",
+		"Agency Abbreviation": "OPM",
+		"LA Name": "OPM",
+		"code2": "27",
+		"Name": "Office of Personnel Management"
+	},
+	{
+		"Code": "028",
+		"Agency Abbreviation": "SBA",
+		"LA Name": "SBA",
+		"code2": "28",
+		"Name": "Small Business Administration"
+	},
+	{
+		"Code": "029",
+		"Agency Abbreviation": "VA",
+		"LA Name": "VA",
+		"code2": "29",
+		"Name": "Department of Veterans Affairs"
+	},
+	{
+		"Code": "184",
+		"Agency Abbreviation": "USAID",
+		"LA Name": "USAID",
+		"code2": "184",
+		"Name": "United States Agency for International Development"
+	},
+	{
+		"Code": "422",
+		"Agency Abbreviation": "NSF",
+		"LA Name": "NSF",
+		"code2": "422",
+		"Name": "National Science Foundation"
+	},
+	{
+		"Code": "429",
+		"Agency Abbreviation": "NRC",
+		"LA Name": "NRC",
+		"code2": "429",
+		"Name": "Nuclear Regulatory Commission"
+	},
+	{
+		"Code": "PMA",
+		"Agency Abbreviation": "PMA",
+		"LA Name": "PMA",
+		"code2": "PMA",
+		"Name": "President's Management Agenda"
+	},
+	{
+		"Code": ""
+	}
+]
