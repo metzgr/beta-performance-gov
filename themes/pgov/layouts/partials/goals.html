@@ -1,3 +1,8 @@
+{{ $codes := dict "key" "value" }}
+
+{{ range .Site.Data.codes }}
+    {{ $codes = merge $codes (dict .Code .Name) }}
+{{ end }}
 
 <div class="flex justify-center pt-6 space-x-4">
     <span id="All" onClick="category_click(this.id)" class="hover:bg-sky-500 hover:text-white inline-flex items-center rounded-md bg-gray-50 px-2 py-1 text-xs font-medium text-gray-600 ring-1 ring-inset ring-gray-500/10">All</span>
@@ -19,7 +24,21 @@
         {{ range .Site.Data.goals }}
           {{ if eq .goal_type "APG" }}
               <div name="All, {{ .applied_tags }}">
-                {{ partial "card.html" . }}
+                {{ $goal_description_string := printf "%s" .goal_description }}
+                <!-- Renders card component -->
+                <a href="{{ .url_pgov_agency_12 }}">
+                  <div class="group relative">
+                    <div class="min-h-80 aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-stone-100 lg:aspect-none group-hover:opacity-75 lg:h-80">     
+                      <p class="sans text-sm mx-6 my-4">{{ index $codes .agency_code }}</p>                
+                      <p class="sans text-lg mx-6 my-4 font-semibold">{{ .goal_name | truncate 70 }}</p> 
+                      {{ if ge (len $goal_description_string ) 175 }}
+                        <p class="sans text-base mx-6 my-4">{{ .goal_description | truncate 175 }}</p>
+                      {{ else }}
+                        <p class="sans text-base mx-6 my-4">{{ .goal_description }}</p>
+                      {{ end }}
+                    </div>
+                  </div>
+                </a>
               </div>
           {{ end }}
         {{ end }}
