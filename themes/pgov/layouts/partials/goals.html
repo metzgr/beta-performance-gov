@@ -1,25 +1,48 @@
+{{ $codes := dict "key" "value" }}
+
+{{ range .Site.Data.codes }}
+    {{ $codes = merge $codes (dict .Code .Name) }}
+{{ end }}
 
 <div class="flex justify-center pt-6 space-x-4">
-    <span id="All" onClick="category_click(this.id)" class="hover:bg-sky-500 hover:text-white inline-flex items-center rounded-md bg-gray-50 px-2 py-1 text-xs font-medium text-gray-600 ring-1 ring-inset ring-gray-500/10">All</span>
-    <span id="Climate" onClick="category_click(this.id)" class="hover:bg-sky-500 hover:text-white inline-flex items-center rounded-md bg-gray-50 px-2 py-1 text-xs font-medium text-gray-600 ring-1 ring-inset ring-gray-500/10">Climate</span>
-    <span id="Equity" onClick="category_click(this.id)" class="hover:bg-sky-500 hover:text-white inline-flex items-center rounded-md bg-gray-50 px-2 py-1 text-xs font-medium text-gray-600 ring-1 ring-inset ring-gray-500/10">Racial equity</span>
-    <span id="Economic development" onClick="category_click(this.id)" class="hover:bg-sky-500 hover:text-white inline-flex items-center rounded-md bg-gray-50 px-2 py-1 text-xs font-medium text-gray-600 ring-1 ring-inset ring-gray-500/10">Economy</span>
-    <span id="Domestic health" onClick="category_click(this.id)" class="hover:bg-sky-500 hover:text-white inline-flex items-center rounded-md bg-gray-50 px-2 py-1 text-xs font-medium text-gray-600 ring-1 ring-inset ring-gray-500/10">Healthcare</span>    
+    <button id="All" onClick="category_click(this.id)" class="w-16 justify-center text-center border border-sky-800 hover:bg-sky-800 hover:text-white inline-flex items-center rounded-md px-2 py-1 text-xs font-medium text-sky-800 ring-1 ring-inset ring-gray-500/10">All</button>
+    <button id="Climate" onClick="category_click(this.id)" class="w-16 justify-center text-center border border-sky-800 hover:bg-sky-800 hover:text-white inline-flex items-center rounded-md bg-gray-50 px-2 py-1 text-xs font-medium text-sky-800 ring-1 ring-inset ring-gray-500/10">Climate</button>
+    <button id="Equity" onClick="category_click(this.id)" class="w-16 justify-center text-center border border-sky-800 hover:bg-sky-800 hover:text-white inline-flex items-center rounded-md bg-gray-50 px-2 py-1 text-xs font-medium text-sky-800 ring-1 ring-inset ring-gray-500/10">Equity</button>
+    <button id="Economic development, Economic security & policy" onClick="category_click(this.id)" class="w-16 justify-center text-center border border-sky-800 hover:bg-sky-800 hover:text-white inline-flex items-center rounded-md bg-gray-50 px-2 py-1 text-xs font-medium text-sky-800 ring-1 ring-inset ring-gray-500/10">Economy</button>
+    <button id="Domestic health, Global health, Medicare" onClick="category_click(this.id)" class="w-18 justify-center text-center border border-sky-800 hover:bg-sky-800 hover:text-white inline-flex items-center rounded-md bg-gray-50 px-2 py-1 text-xs font-medium text-sky-800 ring-1 ring-inset ring-gray-500/10">Healthcare</buttonn>    
 </div>
 
 <!-- test values
 <pre id="output1"></pre>
 <pre id="output2"></pre>
 -->
-
+<!-- style="background-color:#023059" -->
 <!-- Renders Card Partial -->
-<div id="all-cards" class="bg-white">
+<div id="all-cards" style="background-color: #fcfcfb;">
     <div class="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-16 lg:max-w-7xl lg:px-8">
       <div class="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:gap-x-8">
         {{ range .Site.Data.goals }}
           {{ if eq .goal_type "APG" }}
               <div name="All, {{ .applied_tags }}">
-                {{ partial "card.html" . }}
+                {{ $goal_description_string := printf "%s" .goal_description }}
+                <!-- Renders card component -->
+                <a href="{{ .url_pgov_agency_12 }}">
+                  <div class="group relative">
+                    <div dir="ltr"class="border border-s-yellow-500 min-h-80 aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md lg:aspect-none group-hover:opacity-75 lg:h-80">     
+                      <p style="color:#BF930F" class="sans text-sm mx-6 my-4 inline-block">{{ index $codes .agency_code }}</p>                
+                        <span class="inline-flex items-center gap-x-1.5 rounded-md bg-blue-100 px-2 py-1 text-xs font-medium text-blue-700 ms-8">
+                          <svg class="h-1.5 w-1.5 fill-blue-500" viewBox="0 0 6 6" aria-hidden="true"><circle cx="3" cy="3" r="3" /></svg>
+                             {{ .goal_status }}
+                        </span>
+                      <p class="sans text-lg mx-6 my-4 font-normal text-sky-950">{{ .goal_name | truncate 70 }}</p> 
+                      {{ if ge (len $goal_description_string ) 175 }}
+                        <p class="sans text-base mx-6 my-4 text-sky-950">{{ .goal_description | truncate 175 }}</p>
+                      {{ else }}
+                        <p class="sans text-base mx-6 my-4 text-sky-950">{{ .goal_description }}</p>
+                      {{ end }}
+                    </div>
+                  </div>
+                </a>
               </div>
           {{ end }}
         {{ end }}
@@ -31,16 +54,32 @@
 <script>
 
   function category_click(clicked_id) {
-      const var1 = document.querySelectorAll("div[name*=" + CSS.escape(clicked_id) + "]");
-      //output1.textContent = `Selection count: ${var1.length}`;
-      const var2 = document.querySelectorAll("div[name*=All]");
-      //output2.textContent = `Selection count: ${var2.length}`;
-      var2.forEach((userItem) => {
-        userItem.style.display = 'none'
-      });
+    // Get list of all cards
+    const var2 = document.querySelectorAll("div[name*=All]");
+
+    // Hide all cards
+    var2.forEach((userItem) => {
+      userItem.style.display = 'none'
+    });
+
+    // Split IDs into array
+    const myArray = clicked_id.split(",");
+
+    // Loop through each ID in the array
+    myArray.forEach((id) => {
+      // Get list of all cards with this ID in its applied tags
+      const var1 = document.querySelectorAll("div[name*=" + CSS.escape(id) + "]");
+      // Display these cards
       var1.forEach((userItem) => {
         userItem.style.display = 'block'
       });
+    });
   }
+
+  // const button = document.getElementById("climate");
+  //   button.addEventListener("click", function() {
+  //     this.classList.toggle("active");
+  //   });
+    
 
 </script>
