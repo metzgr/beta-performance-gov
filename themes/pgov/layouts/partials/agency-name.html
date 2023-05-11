@@ -1,7 +1,0 @@
-
-
-{{ range .Site.Data.codes }}
-    {{ if eq .codes.Code .agency_code }}
-        <p>{{ .codes.Name }}</p>
-    {{ end }}
-{{ end }}

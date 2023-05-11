@@ -9,7 +9,8 @@ module.exports = {
       extend: {},
       fontFamily: {
         'sans': '-apple-system',
-      }
+      },
+      buttonColor: 'rgb(7 89 133);',
     },
     variants: {
       extend: {
