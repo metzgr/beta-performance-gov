@@ -4,6 +4,6 @@
 
 /* Add your own custom styles below this line */
 
-.tag:hover { 
-    background-color: bg-sky-500;
+.card { 
+    background-color:#385C89;
 }
