@@ -8,8 +8,8 @@
     <button id="All" onClick="category_click(this.id)" class="w-16 justify-center text-center border border-sky-800 hover:bg-sky-800 hover:text-white inline-flex items-center rounded-md px-2 py-1 text-xs font-medium text-sky-800 ring-1 ring-inset ring-gray-500/10">All</button>
     <button id="Climate" onClick="category_click(this.id)" class="w-16 justify-center text-center border border-sky-800 hover:bg-sky-800 hover:text-white inline-flex items-center rounded-md bg-gray-50 px-2 py-1 text-xs font-medium text-sky-800 ring-1 ring-inset ring-gray-500/10">Climate</button>
     <button id="Equity" onClick="category_click(this.id)" class="w-16 justify-center text-center border border-sky-800 hover:bg-sky-800 hover:text-white inline-flex items-center rounded-md bg-gray-50 px-2 py-1 text-xs font-medium text-sky-800 ring-1 ring-inset ring-gray-500/10">Equity</button>
-    <button id="Economic development" onClick="category_click(this.id)" class="w-16 justify-center text-center border border-sky-800 hover:bg-sky-800 hover:text-white inline-flex items-center rounded-md bg-gray-50 px-2 py-1 text-xs font-medium text-sky-800 ring-1 ring-inset ring-gray-500/10">Economy</button>
-    <button id="Domestic health" onClick="category_click(this.id)" class="w-18 justify-center text-center border border-sky-800 hover:bg-sky-800 hover:text-white inline-flex items-center rounded-md bg-gray-50 px-2 py-1 text-xs font-medium text-sky-800 ring-1 ring-inset ring-gray-500/10">Healthcare</buttonn>    
+    <button id="Economic development, Economic security & policy" onClick="category_click(this.id)" class="w-16 justify-center text-center border border-sky-800 hover:bg-sky-800 hover:text-white inline-flex items-center rounded-md bg-gray-50 px-2 py-1 text-xs font-medium text-sky-800 ring-1 ring-inset ring-gray-500/10">Economy</button>
+    <button id="Domestic health, Global health, Medicare" onClick="category_click(this.id)" class="w-18 justify-center text-center border border-sky-800 hover:bg-sky-800 hover:text-white inline-flex items-center rounded-md bg-gray-50 px-2 py-1 text-xs font-medium text-sky-800 ring-1 ring-inset ring-gray-500/10">Healthcare</buttonn>    
 </div>
 
 <!-- test values
@@ -54,16 +54,26 @@
 <script>
 
   function category_click(clicked_id) {
-      const var1 = document.querySelectorAll("div[name*=" + CSS.escape(clicked_id) + "]");
-      //output1.textContent = `Selection count: ${var1.length}`;
-      const var2 = document.querySelectorAll("div[name*=All]");
-      //output2.textContent = `Selection count: ${var2.length}`;
-      var2.forEach((userItem) => {
-        userItem.style.display = 'none'
-      });
+    // Get list of all cards
+    const var2 = document.querySelectorAll("div[name*=All]");
+
+    // Hide all cards
+    var2.forEach((userItem) => {
+      userItem.style.display = 'none'
+    });
+
+    // Split IDs into array
+    const myArray = clicked_id.split(",");
+
+    // Loop through each ID in the array
+    myArray.forEach((id) => {
+      // Get list of all cards with this ID in its applied tags
+      const var1 = document.querySelectorAll("div[name*=" + CSS.escape(id) + "]");
+      // Display these cards
       var1.forEach((userItem) => {
         userItem.style.display = 'block'
       });
+    });
   }
 
   // const button = document.getElementById("climate");
