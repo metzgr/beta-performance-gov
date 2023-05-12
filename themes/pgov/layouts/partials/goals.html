@@ -6,11 +6,11 @@
 
 
 <div class="flex justify-center pt-6 space-x-4">
-    <button id="All" onClick="category_click(this.id)" class="w-16 justify-center text-center border border-sky-900 hover:bg-sky-900 hover:text-white inline-flex items-center rounded-full px-2 py-1 text-xs font-medium text-sky-950 ring-1 ring-inset ring-gray-500/10">All</button>
-    <button id="Climate" onClick="category_click(this.id)" class="w-16 justify-center text-center border border-sky-900 hover:bg-sky-900 hover:text-white inline-flex items-center rounded-full bg-gray-50 px-2 py-1 text-xs font-medium text-sky-950 ring-1 ring-inset ring-gray-500/10">Climate</button>
-    <button id="Equity" onClick="category_click(this.id)" class="w-16 justify-center text-center border border-sky-900 hover:bg-sky-900 hover:text-white inline-flex items-center rounded-full bg-gray-50 px-2 py-1 text-xs font-medium text-sky-950 ring-1 ring-inset ring-gray-500/10">Equity</button>
-    <button id="Economic development, Economic security & policy" onClick="category_click(this.id)" class="w-18 justify-center text-center border border-sky-900 hover:bg-sky-900 hover:text-white inline-flex items-center rounded-full bg-gray-50 px-2 py-1 text-xs font-medium text-sky-950 ring-1 ring-inset ring-gray-500/10">Economy</button>
-    <button id="Domestic health, Global health, Medicare" onClick="category_click(this.id)" class="w-18 justify-center text-center border border-sky-900 hover:bg-sky-900 hover:text-white inline-flex items-center rounded-full bg-gray-50 px-2 py-1 text-xs font-medium text-sky-950 ring-1 ring-inset ring-gray-500/10">Healthcare</buttonn>    
+    <button id="All" onClick="category_click(this.id)" class="tag w-16 justify-center text-center border border-sky-900 hover:bg-sky-900 hover:text-white inline-flex items-center rounded-full px-2 py-1 text-xs font-medium text-sky-950 ring-1 ring-inset ring-gray-500/10">All</button>
+    <button id="Climate" onClick="category_click(this.id)" class="tag w-16 justify-center text-center border border-sky-900 hover:bg-sky-900 hover:text-white inline-flex items-center rounded-full bg-gray-50 px-2 py-1 text-xs font-medium text-sky-950 ring-1 ring-inset ring-gray-500/10">Climate</button>
+    <button id="Equity" onClick="category_click(this.id)" class="tag w-16 justify-center text-center border border-sky-900 hover:bg-sky-900 hover:text-white inline-flex items-center rounded-full bg-gray-50 px-2 py-1 text-xs font-medium text-sky-950 ring-1 ring-inset ring-gray-500/10">Equity</button>
+    <button id="Economic development, Economic security & policy" onClick="category_click(this.id)" class="tag w-18 justify-center text-center border border-sky-900 hover:bg-sky-900 hover:text-white inline-flex items-center rounded-full bg-gray-50 px-2 py-1 text-xs font-medium text-sky-950 ring-1 ring-inset ring-gray-500/10">Economy</button>
+    <button id="Domestic health, Global health, Medicare" onClick="category_click(this.id)" class="tag w-18 justify-center text-center border border-sky-900 hover:bg-sky-900 hover:text-white inline-flex items-center rounded-full bg-gray-50 px-2 py-1 text-xs font-medium text-sky-950 ring-1 ring-inset ring-gray-500/10">Healthcare</buttonn>    
 </div>
 
 <!-- test values
@@ -77,6 +77,15 @@
         userItem.style.display = 'block'
       });
     });
+
+    const allFilters = document.querySelectorAll(".tag");
+    allFilters.forEach((item) => {
+      item.style.backgroundColor = "rgb(249 250 251)";
+      item.style.color = "rgb(8 47 73)";
+    }) 
+    const filter = document.getElementById(clicked_id);
+    filter.style.backgroundColor = "rgb(12 74 110)";
+    filter.style.color = "rgb(255 255 255)";
   }
 
   const statuses = document.querySelectorAll(".status");
