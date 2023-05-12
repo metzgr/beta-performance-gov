@@ -4,12 +4,13 @@
     {{ $codes = merge $codes (dict .Code .Name) }}
 {{ end }}
 
+
 <div class="flex justify-center pt-6 space-x-4">
-    <button id="All" onClick="category_click(this.id)" class="w-16 justify-center text-center border border-sky-800 hover:bg-sky-800 hover:text-white inline-flex items-center rounded-md px-2 py-1 text-xs font-medium text-sky-800 ring-1 ring-inset ring-gray-500/10">All</button>
-    <button id="Climate" onClick="category_click(this.id)" class="w-16 justify-center text-center border border-sky-800 hover:bg-sky-800 hover:text-white inline-flex items-center rounded-md bg-gray-50 px-2 py-1 text-xs font-medium text-sky-800 ring-1 ring-inset ring-gray-500/10">Climate</button>
-    <button id="Equity" onClick="category_click(this.id)" class="w-16 justify-center text-center border border-sky-800 hover:bg-sky-800 hover:text-white inline-flex items-center rounded-md bg-gray-50 px-2 py-1 text-xs font-medium text-sky-800 ring-1 ring-inset ring-gray-500/10">Equity</button>
-    <button id="Economic development, Economic security & policy" onClick="category_click(this.id)" class="w-16 justify-center text-center border border-sky-800 hover:bg-sky-800 hover:text-white inline-flex items-center rounded-md bg-gray-50 px-2 py-1 text-xs font-medium text-sky-800 ring-1 ring-inset ring-gray-500/10">Economy</button>
-    <button id="Domestic health, Global health, Medicare" onClick="category_click(this.id)" class="w-18 justify-center text-center border border-sky-800 hover:bg-sky-800 hover:text-white inline-flex items-center rounded-md bg-gray-50 px-2 py-1 text-xs font-medium text-sky-800 ring-1 ring-inset ring-gray-500/10">Healthcare</buttonn>    
+    <button id="All" onClick="category_click(this.id)" class="w-16 justify-center text-center border border-sky-900 hover:bg-sky-900 hover:text-white inline-flex items-center rounded-full px-2 py-1 text-xs font-medium text-sky-950 ring-1 ring-inset ring-gray-500/10">All</button>
+    <button id="Climate" onClick="category_click(this.id)" class="w-16 justify-center text-center border border-sky-900 hover:bg-sky-900 hover:text-white inline-flex items-center rounded-full bg-gray-50 px-2 py-1 text-xs font-medium text-sky-950 ring-1 ring-inset ring-gray-500/10">Climate</button>
+    <button id="Equity" onClick="category_click(this.id)" class="w-16 justify-center text-center border border-sky-900 hover:bg-sky-900 hover:text-white inline-flex items-center rounded-full bg-gray-50 px-2 py-1 text-xs font-medium text-sky-950 ring-1 ring-inset ring-gray-500/10">Equity</button>
+    <button id="Economic development, Economic security & policy" onClick="category_click(this.id)" class="w-18 justify-center text-center border border-sky-900 hover:bg-sky-900 hover:text-white inline-flex items-center rounded-full bg-gray-50 px-2 py-1 text-xs font-medium text-sky-950 ring-1 ring-inset ring-gray-500/10">Economy</button>
+    <button id="Domestic health, Global health, Medicare" onClick="category_click(this.id)" class="w-18 justify-center text-center border border-sky-900 hover:bg-sky-900 hover:text-white inline-flex items-center rounded-full bg-gray-50 px-2 py-1 text-xs font-medium text-sky-950 ring-1 ring-inset ring-gray-500/10">Healthcare</buttonn>    
 </div>
 
 <!-- test values
@@ -28,12 +29,14 @@
                 <!-- Renders card component -->
                 <a href="{{ .url_pgov_agency_12 }}">
                   <div class="group relative">
-                    <div dir="ltr"class="border border-s-yellow-500 min-h-80 aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md lg:aspect-none group-hover:opacity-75 lg:h-80">     
-                      <p style="color:#BF930F" class="sans text-sm mx-6 my-4 inline-block">{{ index $codes .agency_code }}</p>                
-                        <span class="inline-flex items-center gap-x-1.5 rounded-md bg-blue-100 px-2 py-1 text-xs font-medium text-blue-700 ms-8">
-                          <svg class="h-1.5 w-1.5 fill-blue-500" viewBox="0 0 6 6" aria-hidden="true"><circle cx="3" cy="3" r="3" /></svg>
-                             {{ .goal_status }}
-                        </span>
+                    <div dir="ltr" style="border-left-width:3px;" class="border border-s-yellow-500 min-h-80 aspect-h-1 aspect-w-1 w-full overflow-hidden lg:aspect-none group-hover:opacity-75 lg:h-80">     
+                      <div class="flex justify-around ">
+                        <p style="color:#BF930F" class="font-semibold sans text-sm mx-6 my-4 inline-block">{{ index $codes .agency_code }}</p>                
+                          <span class="status inline-flex items-center gap-x-1.5 rounded-md bg-blue-100 px-2 py-1 text-xs font-medium text-blue-700 ms-8 my-4">
+                            <svg class="h-1.5 w-1.5 fill-blue-500" viewBox="0 0 6 6" aria-hidden="true"><circle cx="3" cy="3" r="3" /></svg>
+                              {{ .goal_status }}
+                          </span>
+                      </div>
                       <p class="sans text-lg mx-6 my-4 font-normal text-sky-950">{{ .goal_name | truncate 70 }}</p> 
                       {{ if ge (len $goal_description_string ) 175 }}
                         <p class="sans text-base mx-6 my-4 text-sky-950">{{ .goal_description | truncate 175 }}</p>
@@ -76,10 +79,21 @@
     });
   }
 
-  // const button = document.getElementById("climate");
-  //   button.addEventListener("click", function() {
-  //     this.classList.toggle("active");
-  //   });
-    
+  const statuses = document.querySelectorAll(".status");
+  statuses.forEach((item) => {
+    if(item.innerText === "On Track") {
+      item.style.backgroundColor = "rgb(220 252 231)";
+      item.style.color ="rgb(21 128 61)";
+      item.querySelector("svg").style.fill = "rgb(34 197 94)";
+    } else if (item.innerText === "Unavailable") {
+      item.style.backgroundColor = "rgb(243 244 246)";
+      item.style.color ="rgb(75 85 99)";
+      item.querySelector("svg").style.fill = "rgb(156 163 175)";
+    } else if (item.innerText === "Delayed" || item.innerText === "Blocked") {
+      item.style.backgroundColor = "rgb(254 226 226)";
+      item.style.color ="rgb(185 28 28)";
+      item.querySelector("svg").style.fill = "rgb(239 68 68)";
+    }
+  }) 
 
 </script>
