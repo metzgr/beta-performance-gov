@@ -13,10 +13,9 @@
     <button id="Domestic health, Global health, Medicare" onClick="category_click(this.id)" class="tag w-18 justify-center text-center border border-sky-900 hover:bg-sky-900 hover:text-white inline-flex items-center rounded-full bg-gray-50 px-2 py-1 text-xs font-medium text-sky-950 ring-1 ring-inset ring-gray-500/10">Healthcare</buttonn>    
 </div>
 
-<!-- test values
-<pre id="output1"></pre>
-<pre id="output2"></pre>
--->
+<br><br>
+<p id="output">Showing 90 of 90 total results</p>
+
 <!-- style="background-color:#023059" -->
 <!-- Renders Card Partial -->
 <div id="all-cards" style="background-color: #fcfcfb;">
@@ -55,8 +54,16 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script>
-
+  
+  // Perform this function on tag filter click
   function category_click(clicked_id) {
+    category_hide_all();
+    category_show_clicked(clicked_id);
+    category_count();
+  }
+
+  // Hide all cards
+  function category_hide_all() {
     // Get list of all cards
     const var2 = document.querySelectorAll("div[name*=All]");
 
@@ -65,6 +72,16 @@
       userItem.style.display = 'none'
     });
 
+    // Set filter buttons to default color
+    const allFilters = document.querySelectorAll(".tag");
+    allFilters.forEach((item) => {
+      item.style.backgroundColor = "rgb(249 250 251)";
+      item.style.color = "rgb(8 47 73)";
+    }) 
+  }
+
+  // Show all cards with a tag that was selected
+  function category_show_clicked(clicked_id) {
     // Split IDs into array
     const myArray = clicked_id.split(",");
 
@@ -78,16 +95,33 @@
       });
     });
 
-    const allFilters = document.querySelectorAll(".tag");
-    allFilters.forEach((item) => {
-      item.style.backgroundColor = "rgb(249 250 251)";
-      item.style.color = "rgb(8 47 73)";
-    }) 
+    // Set clicked filter button to active color
     const filter = document.getElementById(clicked_id);
     filter.style.backgroundColor = "rgb(12 74 110)";
     filter.style.color = "rgb(255 255 255)";
   }
 
+  // Display the number of results
+  function category_count() {
+    // Get list of all cards
+    const var3 = document.querySelectorAll("div[name*=All]");
+
+    // Set variables
+    var counter = 0;
+    var total = var3.length;
+
+    // Loop all cards and count displayed cards
+    var3.forEach((item) => {
+      if (item.style.display === 'block') {
+        counter = counter + 1;
+      }
+    }) 
+
+    // Output results
+    document.getElementById("output").innerHTML = `Showing ${counter} of ${total} total results`;
+  }
+
+  // Set goal status designs
   const statuses = document.querySelectorAll(".status");
   statuses.forEach((item) => {
     if(item.innerText === "On Track") {
