@@ -1,0 +1,133 @@
+[
+	{
+		"tag_id": "Administration of justice",
+		"name": "Administration of justice"
+	},
+	{
+		"tag_id": "Agriculture",
+		"name": "Agriculture"
+	},
+	{
+		"tag_id": "Artificial intelligence R&D",
+		"name": "Artificial intelligence R&D"
+	},
+	{
+		"tag_id": "Climate change",
+		"name": "Climate change"
+	},
+	{
+		"tag_id": "Commerce & trade",
+		"name": "Commerce & trade"
+	},
+	{
+		"tag_id": "Cybersecurity",
+		"name": "Cybersecurity"
+	},
+	{
+		"tag_id": "Domestic health",
+		"name": "Domestic health"
+	},
+	{
+		"tag_id": "Economic development",
+		"name": "Economic development"
+	},
+	{
+		"tag_id": "Economic security & policy",
+		"name": "Economic security & policy"
+	},
+	{
+		"tag_id": "Education",
+		"name": "Education"
+	},
+	{
+		"tag_id": "Energy",
+		"name": "Energy"
+	},
+	{
+		"tag_id": "Environmental justice",
+		"name": "Environmental justice"
+	},
+	{
+		"tag_id": "Equity",
+		"name": "Equity"
+	},
+	{
+		"tag_id": "General government & management",
+		"name": "General government & management"
+	},
+	{
+		"tag_id": "General science/space/technology",
+		"name": "General science/space/technology"
+	},
+	{
+		"tag_id": "Global health",
+		"name": "Global health"
+	},
+	{
+		"tag_id": "Housing",
+		"name": "Housing"
+	},
+	{
+		"tag_id": "Income security",
+		"name": "Income security"
+	},
+	{
+		"tag_id": "International affairs",
+		"name": "International affairs"
+	},
+	{
+		"tag_id": "Medicare",
+		"name": "Medicare"
+	},
+	{
+		"tag_id": "National security",
+		"name": "National security"
+	},
+	{
+		"tag_id": "Native American & tribal communities",
+		"name": "Native American & tribal communities"
+	},
+	{
+		"tag_id": "Pandemic response",
+		"name": "Pandemic response"
+	},
+	{
+		"tag_id": "PMA: Business of Government",
+		"name": "PMA: Business of Government"
+	},
+	{
+		"tag_id": "PMA: Customer Experience",
+		"name": "PMA: Customer Experience"
+	},
+	{
+		"tag_id": "PMA: Workforce",
+		"name": "PMA: Workforce"
+	},
+	{
+		"tag_id": "Social security",
+		"name": "Social security"
+	},
+	{
+		"tag_id": "Social services",
+		"name": "Social services"
+	},
+	{
+		"tag_id": "Transportation infrastructure",
+		"name": "Transportation infrastructure"
+	},
+	{
+		"tag_id": "Veterans benefits & services",
+		"name": "Veterans benefits & services"
+	},
+	{
+		"tag_id": "Workforce benefits & services",
+		"name": "Workforce benefits & services"
+	},
+	{
+		"tag_id": "Workforce development & employment",
+		"name": "Workforce development & employment"
+	},
+	{
+		"tag_id": ""
+	}
+]
