@@ -26,47 +26,47 @@
 <!-- Agencies filter dropdown -->
 <!-- <div class="flex flex-row relative justify-center lg:max-w-7xl mt-2 mx-auto">
   <div class="flex relative rounded-md relative">
-  <button type="button" class="relative inline-flex items-center rounded-l-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 focus:z-10" style="width:255px">Agencies</button>
-  <button type="button" onClick="closeAgenciesFilterDropdown()" class="relative inline-flex items-center rounded-r-md bg-white px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-10" id="option-menu-button" aria-expanded="true" aria-haspopup="true">
-    <span class="sr-only">Open options</span>
-    <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-      <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd" />
-    </svg>
-  </button>
-
-  <div class="absolute -ml-px block">    
-      <div class="agencies-filter hidden absolute z-10 -mr-1 mt-10 w-64 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="option-menu-button" tabindex="-1">
-        <div class="py-1 h-72 overflow-auto" role="none"> 
-          {{ range .Site.Data.codes }}
-            <a href="#" id="{{ .Name }}" onClick="agencies_filter()" class="select-agency text-gray-700 block px-4 py-2 text-sm hover:bg-slate-200" role="menuitem" tabindex="-1" id="option-menu-item-0">{{ .Name }}</a>
-          {{ end }}
-        </div>
-      </div>
-  </div>
-</div> -->
-
-  <!-- Goal Status filter dropdown -->
-  <!-- <div class="flex relative rounded-md relative">
-    <button type="button" class="relative inline-flex items-center rounded-l-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 focus:z-10 ml-2.5" style="width:255px">Goal Status</button>
-    <button type="button" onClick="closeGoalFilterDropdown()" class="relative inline-flex items-center rounded-r-md bg-white px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-10" id="option-menu-button" aria-expanded="true" aria-haspopup="true">
+    <button type="button" class="agency-filter-button relative inline-flex items-center rounded-l-md bg-white px-3 py-2 text-sm font-normal italic text-gray-900 ring-1 ring-inset ring-gray-300 focus:z-10" style="width:255px"><i class="fa-sharp fa-solid fa-building-columns mr-2.5"></i>Select Agency</button>
+    <button type="button" onClick="toggleAgenciesFilterDropdown()" class="relative inline-flex items-center rounded-r-md bg-white px-2 py-2 text-black ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-10" id="option-menu-button" aria-expanded="true" aria-haspopup="true">
       <span class="sr-only">Open options</span>
       <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
         <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd" />
       </svg>
     </button>
-  
+
     <div class="absolute -ml-px block">    
-        <div class="goals-filter hidden absolute z-10 -mr-1 mt-10 ml-2.5 w-64 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="option-menu-button" tabindex="-1">
+        <div class="agencies-filter-dropdown hidden absolute z-10 -mr-1 mt-10 w-64 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="option-menu-button" tabindex="-1">
           <div class="py-1 h-72 overflow-auto" role="none"> 
-            {{ range .Site.Data.goals }}
-              <a href="#" id="{{ .Name }}" class="select-agency text-gray-700 block px-4 py-2 text-sm hover:bg-slate-200" role="menuitem" tabindex="-1" id="option-menu-item-0">{{ .goal_status }}</a>
+            {{ range .Site.Data.codes }}
+              <a href="#" id="{{ .Name }}" onClick="displaySelectedAgency()" class="select-agency text-gray-700 block px-4 py-2 text-sm hover:bg-slate-200" role="menuitem" tabindex="-1" id="option-menu-item-0">{{ .Name }}</a>
             {{ end }}
           </div>
         </div>
     </div>
-  </div>
-</div> -->
-
+  </div> -->
+    <!-- Goal Status filter dropdown -->
+    <!-- <div class="flex relative rounded-md relative">
+      <button type="button" class="relative inline-flex items-center rounded-l-md bg-white px-3 py-2 text-sm font-normal italic text-gray-900 ring-1 ring-inset ring-gray-300 focus:z-10 ml-2.5" style="width:255px"><i class="fa-solid fa-flag mr-2.5"></i>Select Goal Status</button>
+      <button type="button" onClick="toggleStatusFilterDropdown()" class="relative inline-flex items-center rounded-r-md bg-white px-2 py-2 text-black ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-10" id="option-menu-button" aria-expanded="true" aria-haspopup="true">
+        <span class="sr-only">Open options</span>
+        <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+          <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd" />
+        </svg>
+      </button>
+    
+      <div class="absolute -ml-px block">    
+          <div class="status-filter-dropdown hidden absolute z-10 -mr-1 mt-10 ml-2.5 w-64 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="option-menu-button" tabindex="-1">
+            <div class="py-1 h-72 overflow-auto" role="none"> 
+              {{ range .Site.Data.goals }} 
+                <a href="#" id="{{ .Name }}" onClick="displaySelectedStatus()" class="select-status text-gray-700 block px-4 py-2 text-sm hover:bg-slate-200" role="menuitem" tabindex="-1" id="option-menu-item-0">{{ .goal_status }}</a>
+              {{ end }}                             
+            </div>
+          </div>
+      </div>
+    </div>
+    <button class="clear-filter text-xs text-sky-900 font-semibold italic ml-3.5">Clear filters<i class="fa-solid fa-xmark ml-1.5"></i></button>
+  </div> -->
+  
 
 <!-- Filter Tags -->
 <div class="flex justify-center pt-6 space-x-4">
@@ -82,13 +82,14 @@
     <div class="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-16 lg:max-w-7xl lg:px-8" >
       <p id="output" class="text-right sans text-sm text-slate-600 font-medium">90 of 90 total results</p>
       <div class="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:gap-x-8">
-        {{ range $goal := .Site.Data.goals }}
-        
+        {{ $matchingIds := 0 }}
+      
+        {{ range $goal := .Site.Data.goals }}  
           {{ if eq $goal.goal_type "APG" }}
             {{ $goal_description_string := printf "%s" .goal_description }}
-            <div class="select-card">
+            <!-- <div class="select-card"> -->
                 <div class="group relative cards" name="All, {{ $goal.applied_tags }}" data-value="{{ index $codes $goal.agency_code }}">
-                    <div dir="ltr" style="height:406px;" class="bg-white border border-slate-300 rounded-2xl min-h-80 aspect-h-1 aspect-w-1 w-full overflow-hidden lg:aspect-none group-hover:opacity-75">                           
+                    <div dir="ltr" style="height:406px;" class="bg-white border border-slate-300 rounded-2xl min-h-80 aspect-h-1 aspect-w-1 w-full overflow-hidden lg:aspect-none group-hover:opacity-90">                           
                       <div class="grid" style="grid-template-columns: 267px 190px;">                                                                   
                         {{ if eq $goal.goal_type "APG" }}
                         <span style="width:fit-content; height:26px; font-family: 'Public Sans', sans-serif;" class="inline-flex items-center rounded-full bg-gray-50 px-2 py-0.5 text-sm font-medium text-gray-700 ring-1 ring-inset ring-gray-500/10 ms-6 my-4">2YRGoal</span>
@@ -128,8 +129,17 @@
                       <div class="flex flex-row mx-6 mt-3 mb-4">
                         <i class="fa-solid fa-list-check mr-2 mt-1"></i>
                         <p class="text-base font-semibold mr-2 text-slate-900" style="font-family: 'Public Sans', sans-serif;">Targets</p>
-                        <div class="flex -space-x-1 overflow-hidden ml-auto">
-                          <p class="text-base text-slate-600" style="font-family: 'Public Sans', sans-serif;">Add text here</p>                      
+                        <div class="flex -space-x-1 overflow-hidden ml-auto">                      
+                          {{ $targetData := getJSON "/data/target.json" }}
+                          {{ $matchingItems := where $targetData ".related_goal_id" $goal.goal_id }}
+                          {{ $matchingIds = (len $matchingItems) }}
+                          {{ $targetMet := 0 }}
+                          {{ range $totalMet := $matchingItems }}
+                            {{ if eq $totalMet.progress_pct_target_status "Target met" }}
+                              {{ $targetMet = add $targetMet 1 }}
+                            {{ end }}
+                          {{ end }}
+                          <p class="text-base text-slate-600" style="font-family: 'Public Sans', sans-serif;">{{ $targetMet }} out of {{ $matchingIds }} met</p>                      
                         </div>
                       </div>
                     </div>    
@@ -152,9 +162,8 @@
                               <span class="my-5 mr-1" style="font-family: 'Public Sans', sans-serif;">{{ index $shuffled $index }}</span>
                             {{ end }}
                           {{ end }}                    
-                    </div>  
-                </div>
-                  <!-- Renders Overlay -->
+                    </div> 
+                    <!-- Renders Overlay -->
                   <div id="overlay" class="hidden target-overlay">
                     <div class="relative z-10" role="dialog" aria-modal="true">
                       <div class="fixed inset-0 hidden bg-black transition-opacity md:block" style="opacity:85%"></div>
@@ -167,7 +176,7 @@
                                 {{ $imgAlt := path.Base $logo.Name }}
                                 {{ $removeImgType := replaceRE `(\.[^.]+)$` "" $imgAlt }}     
                                   {{ if eq $removeImgType $lowercaseOrg }}                       
-                                      <img src="{{ $logo.Permalink }}" alt="{{ $removeImgType }}" style="width:37px; height:37px; display:inline-block;" class="my-3 mr-2.5"/>                                                                         
+                                      <img src="{{ $logo.Permalink }}" alt="{{ $removeImgType }}" style="width:47px; height:47px; display:inline-block;" class="my-3 mr-2.5"/>                                                                         
                                   {{ end }}
                                 {{ end }}
                                 <p class="overlay-goal-agency text-base font-semibold sans my-4 inline-block text-white uppercase" style="width: fit-content; font-family: 'Public Sans', sans-serif;"></p>
@@ -194,21 +203,18 @@
                             </div>
                             <div style="top:10px" class="relative w-full items-center bg-white px-4 pb-8 pt-14 sm:px-6 sm:pt-8 md:p-6 lg:p-8">
                               <div class="absolute hidden pt-2 sm:block" style="top:-63px; right:-46px;">
-                                <button type="button" id="closeOverlay" class="rounded-full bg-slate-700" style="width:40px;height:40px;opacity:80%">
-                                  <span style="color:white;font-weight:700;opacity:100%;font-size:17px;">X</span>
-                                  <!-- <i class="fa-solid fa-circle-xmark fa-2xl text-slate-700"></i> -->
-                                  <!-- <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
-                                  </svg> -->
+                                <button type="button" id="closeOverlay" class="rounded-full bg-slate-700 hover:bg-white hover:text-slate-700 text-white hover:text-black" style="font-weight:700;opacity:100%;font-size:17px; width:40px;height:40px;opacity:80%">
+                                  X
                                 </button>
                               </div>
                               <div   class="sm:flex sm:items-start">
                                 <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left">
                                   
-                                  <a href="" class="overlay-goal-button"><button type="button" style="width: 50px;height: 50px;position: absolute;right: -100px;" class="mt-5 mr-5 float-right bg-sky-400 text-white hover:bg-white hover:text-sky-400 mt-3 inline-flex w-full justify-center rounded-full mt-2 px-3 py-1 text-sm font-semibold sm:w-auto">
-                                    <i class="fa-sharp fa-solid fa-arrow-right" style="font-size: 28px; margin-top: 8px"></i>
-                                  </button>
-                                  <span class="text-xs text-white font-semibold" style="font-family: 'Public Sans', sans-serif; position: absolute;right: -110px;top: 110px;">Go to Goal Profile</span>
+                                  <a href="" class="overlay-goal-button">
+                                    <button type="button" style="width: 50px;height: 50px;position: absolute;right: -100px;" class="mt-5 mr-5 float-right bg-slate-700 text-white hover:bg-white hover:text-slate-700 mt-3 inline-flex w-full justify-center rounded-full mt-2 px-3 py-1 text-sm font-semibold sm:w-auto">
+                                      <i class="fa-sharp fa-solid fa-arrow-right" style="font-size: 28px; margin-top: 8px"></i>
+                                    </button>
+                                    <span class="text-xs text-white font-semibold" style="font-family: 'Public Sans', sans-serif; position: absolute;right: -110px;top: 110px;">Go to Goal Profile</span>
                                   </a>
 
                                   <h3 class="overlay-goal-name text-xl font-semibold leading-6" id="modal-title" style="font-family: 'Public Sans', sans-serif;"></h3>               
@@ -221,7 +227,7 @@
                                   {{ $targets := getJSON "/data/target.json" }}
                                   {{ range $matchingData := where $targets ".related_goal_id" "in" $goal.goal_id }}
                                   <div class="group relative cards" name="All, {{ $goal.applied_tags }}" data-value="{{ index $codes $goal.agency_code }}">
-                                      <div dir="ltr" style="height:456px;" class="bg-white border border-slate-300 rounded-2xl min-h-80 aspect-h-1 aspect-w-1 w-full overflow-hidden lg:aspect-none group-hover:opacity-75">
+                                      <div dir="ltr" style="height:496px;" class="bg-white border border-slate-300 rounded-2xl min-h-80 aspect-h-1 aspect-w-1 w-full overflow-hidden lg:aspect-none">
                                         <div>
                                             <div class="grid" style="grid-template-columns: 213px 190px;"> 
                                               <span style="width:fit-content; height:26px; font-family: 'Public Sans', sans-serif;" class="inline-flex items-center rounded-full bg-gray-50 px-2 py-0.5 text-sm font-medium ring-1 ring-inset ring-gray-500/10 ms-4 my-4">Target</span>  
@@ -257,14 +263,14 @@
                                         <div class="bg-slate-50 h-full mt-1 pt-3.5">
                                             <div style="width:75%; margin:auto; margin-top:30px;">
                                               <hr class="border-slate-300 mt-2" />
-                                                <span class="text-xs font-semibold me-4 mt-1 m-auto" style="font-family: 'Public Sans', sans-serif;">Start value</span>
-                                                <span class="text-xs me-4 mt-1 m-auto" style="font-family: 'Public Sans', sans-serif; float:right">{{ .value_start }}</span>
+                                                <span class="text-xs font-semibold me-4 mt-1 m-auto align-bottom" style="font-family: 'Public Sans', sans-serif;">Start value</span>
+                                                <span class="text-xs me-4 mt-2 m-auto align-bottom" style="font-family: 'Public Sans', sans-serif; float:right">{{ .value_start }}</span>
                                               <hr class="border-slate-300 mt-2" />
-                                                <span class="text-xs font-semibold me-4 mt-1 m-auto" style="font-family: 'Public Sans', sans-serif;">Target value</span>
-                                                <span class="text-xs me-4 mt-1 m-auto" style="font-family: 'Public Sans', sans-serif; float:right">{{ .value_target }}</span>
+                                                <span class="text-xs font-semibold me-4 mt-1 m-auto align-bottom" style="font-family: 'Public Sans', sans-serif;">Target value</span>
+                                                <span class="text-xs me-4 mt-2 m-auto align-bottom" style="font-family: 'Public Sans', sans-serif; float:right">{{ .value_target }}</span>
                                               <hr class="border-slate-300 mt-2" />
-                                                <span class="text-xs font-semibold me-4 mt-1 m-auto" style="font-family: 'Public Sans', sans-serif;">Current value</span>
-                                                <span class="text-xs me-4 mt-1 m-auto" style="font-family: 'Public Sans', sans-serif; float:right">{{ .value_current }}</span>
+                                                <span class="text-xs font-semibold me-4 mt-1 m-auto align-bottom" style="font-family: 'Public Sans', sans-serif;">Current value</span>
+                                                <span class="text-xs me-4 mt-2 m-auto align-bottom" style="font-family: 'Public Sans', sans-serif; float:right">{{ .value_current }}</span>
                                             </div>
                                         </div>
                                       </div>
@@ -276,8 +282,10 @@
                         </div>
                       </div>
                     </div>
-                  </div>   
-              </div>                                                                  
+                  </div> 
+                </div>
+                     
+              <!-- </div>                                                                   -->
           {{ end }}               
         {{ end }}
       </div>
@@ -287,56 +295,14 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script>
-  const cards = document.querySelectorAll(".cards");
-  // const goalAgency = document.querySelector(".overlay-goal-agency");
-  // const goalName = document.querySelector(".overlay-goal-name");
-  // const goalStatus = document.querySelector(".overlay-goal-status");
-  // const goalDescription = document.querySelector(".overlay-goal-description");
-  // const goalButton = document.querySelector(".overlay-goal-button");
+  // const cards = document.querySelectorAll(".cards");
+  const selectCard = document.querySelectorAll(".cards");
+  const clearFilters = document.querySelector('.clear-filter');
   const overlay = document.querySelector("#overlay");
   const closeOverlay = document.querySelector("#closeOverlay");
-
-  function closeAgenciesFilterDropdown() {
-    var filterButton = document.querySelector(".agencies-filter");
-    filterButton.classList.toggle("hidden");
-  }
-
-  function closeGoalFilterDropdown() {
-    var filterButton = document.querySelector(".goals-filter");
-    filterButton.classList.toggle("hidden");
-  }
-
-  // function showFilter(id) {
-  //   var agencySelected = document.querySelectorAll(".select-agency");
-  //   var agencyName = document.querySelector("#cardAgency");
-  //   var cards = document.querySelector(".cards");
-
-  //   agencySelected.forEach((id) => {
-  //     if (id.href === agencyName.innerHTML) {
-  //       cards.style.display = 'block';
-  //     }
-  //   })
-  // }
-  
-  // Display goal details in overlay
-  // function cardPopup() {
-    // var cards1 = document.querySelectorAll(".cards");
-    // var overlays = document.querySelector("#overlay");
-    // const closeOverlay1 = document.querySelector("#closeOverlay");
-  //   cards.forEach((card) => {
-  //   card.addEventListener("click", () => {   
-  //     overlay.classList.toggle("hidden");
-  //     goalAgency.textContent = card.querySelector("#cardAgency").innerHTML;
-  //     goalName.textContent = card.querySelector("#cardName").getAttribute("data-value");
-  //     goalStatus.textContent = card.querySelector("#cardStatus").getAttribute("data-value");
-  //     goalDescription.textContent = card.querySelector("#cardDescription").getAttribute("data-value");
-  //     goalButton.href = card.querySelector("#hidden-goal-link").getAttribute("href");
-  //   })
-  // })
- 
-  // }
-
-  const selectCard = document.querySelectorAll(".select-card");
+  const agencyFilterButton = document.querySelector(".agency-filter-button");
+  const agencyFilterDropdown = document.querySelector(".agencies-filter-dropdown");
+  const statusFilterDropdown = document.querySelector(".status-filter-dropdown");
 
   selectCard.forEach((item) => {
       item.addEventListener("click", () => {   
@@ -361,43 +327,61 @@
       })
   })
 
+  // clearFilters.addEventListener('click', function() {
+  //     const showAll = document.querySelectorAll("div[name*=All]");
+  //     showAll.forEach((item) => {
+  //       item.style.display = 'block'
+  //     });
+  //     agencyFilterButton.innerHTML = "Select Agency";
+  // })
+
 
 // Perform this function on Agencies filter click
-function agencies_filter() {
-  filter_hide_all();
-  filter_click_agencies();
-}
 
-  function filter_hide_all() {
-    const var2 = document.querySelectorAll("div[name*=All]");
-    var2.forEach((userItem) => {
-      userItem.style.display = 'none'
-    });
-  }
+  // function toggleAgenciesFilterDropdown() {
+  //   agencyFilterDropdown.classList.toggle("hidden");
+  // }
 
-  function filter_click_agencies(){
+  // function toggleStatusFilterDropdown() {
+  //   statusFilterDropdown.classList.toggle("hidden");
+  // }
 
-    const myArray = [];
-    const getAgencies = document.querySelectorAll(".select-agency");
-    const cards = document.querySelectorAll(".cards");
+  // document.addEventListener("click", function(event) {
+  //   var targetElement = event.target;
 
-    // create array of Agency IDs
-    getAgencies.forEach((tag) => {
-      const getAgencyId = tag.getAttribute("id");   
-      myArray.push(getAgencyId);   
-    })
+  //   var isClickedInsideDropdown = agencyFilterDropdown.contains(targetElement);
 
-    myArray.forEach((item) => {
-      console.log(item, "item");
-       // const getCardAgency = document.querySelectorAll("div[data-value*=" + item + "]");
-      // getCardAgency.forEach((userItem) => {
-      //   userItem.style.display = 'block';
-      // })
-      
-    })
-  }
+  //   if(!isClickedInsideDropdown) {
+  //     agencyFilterDropdown.classList.add("hidden");
+        //  agencyFilterDropdown.style.display='none';
+  //   }
+  // })
 
+  // function closeGoalFilterDropdown() {
+  //   var filterButton = document.querySelector(".goals-filter");
+  //   filterButton.classList.toggle("hidden");
+  // }
 
+  // function displaySelectedAgency() {
+  //   const selectAgency = document.querySelectorAll(".select-agency");
+  //   const cards = document.querySelectorAll(".cards");
+
+  //   selectAgency.forEach((item) => {
+  //     item.addEventListener("click", function() {
+  //     var selectedValue = item.innerHTML;
+  //     agencyFilterButton.innerHTML = selectedValue;
+    
+  //       cards.forEach((item) => {
+  //         if (item.getAttribute('data-value') === selectedValue) {
+  //           item.style.display = "block";
+  //         } else {
+  //           item.style.display = "none";
+  //         }
+  //       })
+  //     })
+  //   })
+  // }
+  
    // Perform this function on tag filter click
   function category_click(clicked_id) {
     category_hide_all();
