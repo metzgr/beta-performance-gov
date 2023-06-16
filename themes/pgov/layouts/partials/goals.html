@@ -24,7 +24,7 @@
 
 
 <!-- Agencies filter dropdown -->
-<!-- <div class="flex flex-row relative justify-center lg:max-w-7xl mt-2 mx-auto">
+<div class="flex flex-row relative justify-center lg:max-w-7xl mt-2 mx-auto mt-8">
   <div class="flex relative rounded-md relative">
     <button type="button" class="agency-filter-button relative inline-flex items-center rounded-l-md bg-white px-3 py-2 text-sm font-normal italic text-gray-900 ring-1 ring-inset ring-gray-300 focus:z-10" style="width:255px"><i class="fa-sharp fa-solid fa-building-columns mr-2.5"></i>Select Agency</button>
     <button type="button" onClick="toggleAgenciesFilterDropdown()" class="relative inline-flex items-center rounded-r-md bg-white px-2 py-2 text-black ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-10" id="option-menu-button" aria-expanded="true" aria-haspopup="true">
@@ -43,9 +43,9 @@
           </div>
         </div>
     </div>
-  </div> -->
+  </div>
     <!-- Goal Status filter dropdown -->
-    <!-- <div class="flex relative rounded-md relative">
+    <div class="flex relative rounded-md relative">
       <button type="button" class="relative inline-flex items-center rounded-l-md bg-white px-3 py-2 text-sm font-normal italic text-gray-900 ring-1 ring-inset ring-gray-300 focus:z-10 ml-2.5" style="width:255px"><i class="fa-solid fa-flag mr-2.5"></i>Select Goal Status</button>
       <button type="button" onClick="toggleStatusFilterDropdown()" class="relative inline-flex items-center rounded-r-md bg-white px-2 py-2 text-black ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-10" id="option-menu-button" aria-expanded="true" aria-haspopup="true">
         <span class="sr-only">Open options</span>
@@ -57,15 +57,38 @@
       <div class="absolute -ml-px block">    
           <div class="status-filter-dropdown hidden absolute z-10 -mr-1 mt-10 ml-2.5 w-64 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="option-menu-button" tabindex="-1">
             <div class="py-1 h-72 overflow-auto" role="none"> 
-              {{ range .Site.Data.goals }} 
+              {{ range .Site.Data.status }} 
                 <a href="#" id="{{ .Name }}" onClick="displaySelectedStatus()" class="select-status text-gray-700 block px-4 py-2 text-sm hover:bg-slate-200" role="menuitem" tabindex="-1" id="option-menu-item-0">{{ .goal_status }}</a>
               {{ end }}                             
             </div>
           </div>
       </div>
     </div>
-    <button class="clear-filter text-xs text-sky-900 font-semibold italic ml-3.5">Clear filters<i class="fa-solid fa-xmark ml-1.5"></i></button>
-  </div> -->
+  
+    <!-- Topics filter dropdown -->
+  <div class="flex relative rounded-md relative">
+    <button type="button" class="relative inline-flex items-center rounded-l-md bg-white px-3 py-2 text-sm font-normal italic text-gray-900 ring-1 ring-inset ring-gray-300 focus:z-10 ml-2.5" style="width:255px"><i class="fa-sharp fa-solid fa-hashtag mr-2.5"></i>Select Topic</button>
+    <button type="button" onClick="toggleTopicsFilterDropdown()" class="relative inline-flex items-center rounded-r-md bg-white px-2 py-2 text-black ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-10" id="option-menu-button" aria-expanded="true" aria-haspopup="true">
+      <span class="sr-only">Open options</span>
+      <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+        <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd" />
+      </svg>
+    </button>
+  
+    <div class="absolute -ml-px block">    
+        <div class="topic-filter-dropdown hidden absolute z-10 -mr-1 mt-10 ml-2.5 w-64 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="option-menu-button" tabindex="-1">
+          <div class="py-1 h-72 overflow-auto" role="none"> 
+            {{ range .Site.Data.tags }} 
+              <a href="#" id="{{ .Name }}" onClick="displaySelectedTopic()" class="select-topic text-gray-700 block px-4 py-2 text-sm hover:bg-slate-200" role="menuitem" tabindex="-1" id="option-menu-item-0">{{ .name }}</a>
+            {{ end }}                             
+          </div>
+        </div>
+      </div>
+    </div>
+    <button class="clear-filter text-xs text-sky-900 font-semibold italic ml-3.5 hover:text-slate-900">Clear filters<i class="fa-solid fa-xmark ml-1.5"></i></button>
+</div>
+
+      
   
 
 <!-- Filter Tags -->
@@ -210,7 +233,7 @@
                               <div   class="sm:flex sm:items-start">
                                 <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left">
                                   
-                                  <a href="" class="overlay-goal-button">
+                                  <a href="" target="_blank" class="overlay-goal-button">
                                     <button type="button" style="width: 50px;height: 50px;position: absolute;right: -100px;" class="mt-5 mr-5 float-right bg-slate-700 text-white hover:bg-white hover:text-slate-700 mt-3 inline-flex w-full justify-center rounded-full mt-2 px-3 py-1 text-sm font-semibold sm:w-auto">
                                       <i class="fa-sharp fa-solid fa-arrow-right" style="font-size: 28px; margin-top: 8px"></i>
                                     </button>
@@ -303,6 +326,8 @@
   const agencyFilterButton = document.querySelector(".agency-filter-button");
   const agencyFilterDropdown = document.querySelector(".agencies-filter-dropdown");
   const statusFilterDropdown = document.querySelector(".status-filter-dropdown");
+  const topicFilterDropdown = document.querySelector(".topic-filter-dropdown");
+
 
   selectCard.forEach((item) => {
       item.addEventListener("click", () => {   
@@ -327,24 +352,28 @@
       })
   })
 
-  // clearFilters.addEventListener('click', function() {
-  //     const showAll = document.querySelectorAll("div[name*=All]");
-  //     showAll.forEach((item) => {
-  //       item.style.display = 'block'
-  //     });
-  //     agencyFilterButton.innerHTML = "Select Agency";
-  // })
+  clearFilters.addEventListener('click', function() {
+      const showAll = document.querySelectorAll("div[name*=All]");
+      showAll.forEach((item) => {
+        item.style.display = 'block'
+      });
+      agencyFilterButton.innerHTML = "Select Agency";
+  })
 
 
 // Perform this function on Agencies filter click
 
-  // function toggleAgenciesFilterDropdown() {
-  //   agencyFilterDropdown.classList.toggle("hidden");
-  // }
+  function toggleAgenciesFilterDropdown() {
+    agencyFilterDropdown.classList.toggle("hidden");
+  }
 
-  // function toggleStatusFilterDropdown() {
-  //   statusFilterDropdown.classList.toggle("hidden");
-  // }
+  function toggleStatusFilterDropdown() {
+    statusFilterDropdown.classList.toggle("hidden");
+  }
+
+  function toggleTopicsFilterDropdown() {
+    topicFilterDropdown.classList.toggle("hidden");
+  }
 
   // document.addEventListener("click", function(event) {
   //   var targetElement = event.target;
@@ -362,25 +391,25 @@
   //   filterButton.classList.toggle("hidden");
   // }
 
-  // function displaySelectedAgency() {
-  //   const selectAgency = document.querySelectorAll(".select-agency");
-  //   const cards = document.querySelectorAll(".cards");
+  function displaySelectedAgency() {
+    const selectAgency = document.querySelectorAll(".select-agency");
+    const cards = document.querySelectorAll(".cards");
 
-  //   selectAgency.forEach((item) => {
-  //     item.addEventListener("click", function() {
-  //     var selectedValue = item.innerHTML;
-  //     agencyFilterButton.innerHTML = selectedValue;
+    selectAgency.forEach((item) => {
+      item.addEventListener("click", function() {
+      var selectedValue = item.innerHTML;
+      agencyFilterButton.innerHTML = selectedValue;
     
-  //       cards.forEach((item) => {
-  //         if (item.getAttribute('data-value') === selectedValue) {
-  //           item.style.display = "block";
-  //         } else {
-  //           item.style.display = "none";
-  //         }
-  //       })
-  //     })
-  //   })
-  // }
+        cards.forEach((item) => {
+          if (item.getAttribute('data-value') === selectedValue) {
+            item.style.display = "block";
+          } else {
+            item.style.display = "none";
+          }
+        })
+      })
+    })
+  }
   
    // Perform this function on tag filter click
   function category_click(clicked_id) {
