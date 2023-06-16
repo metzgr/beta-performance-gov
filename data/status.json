@@ -1,0 +1,20 @@
+[
+	{
+		"goal_status": "On Track"
+	},
+	{
+		"goal_status": "Ahead"
+	},
+	{
+		"goal_status": "Blocked"
+	},
+	{
+		"goal_status": "Delayed"
+	},
+	{
+		"goal_status": "Unavailable"
+	},
+	{
+		"goal_status": ""
+	}
+]
