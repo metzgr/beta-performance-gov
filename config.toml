@@ -1,10 +1,40 @@
-baseURL = 'http://metzgr.github.io/beta-performance-gov/'
+baseURL = "http://metzgr.github.io/beta-performance-gov/"
 defaultContentLanguage = "en"
-title = 'Performance.gov'
+title = "Performance.gov"
 theme = "pgov"
 
 [outputFormats]
   # Ensure there are no custom settings here.
 
 [outputs]
-  # Ensure there are no custom settings here.
+  home = ["HTML"]  # Add this line to specify the homepage layout
+
+[[menu.main]]
+  name = "Featured"
+  url = "/"
+  weight = 10
+
+[[menu.main]]
+  name = "Discover"
+  url = "/discover/"
+  weight = 20
+
+[[menu.main]]
+  name = "Communities"
+  url = "/community/"
+  weight = 30
+
+[[menu.main]]
+  name = "Data"
+  url = "/data/"
+  weight = 40
+
+  [[menu.main]]
+  name = "About"
+  url = "/about/"
+  weight = 50
+
+  [[menu.main]]
+  name = "Blog"
+  url = "/blog/"
+  weight = 60

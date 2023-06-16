@@ -3,3 +3,7 @@
 @import 'tailwindcss/utilities';
 
 /* Add your own custom styles below this line */
+
+.card { 
+    background-color:#385C89;
+}

@@ -7,6 +7,10 @@ module.exports = {
     darkMode: false,
     theme: {
       extend: {},
+      fontFamily: {
+        'sans': '-apple-system',
+      },
+      buttonColor: 'rgb(7 89 133);',
     },
     variants: {
       extend: {
@@ -17,7 +21,7 @@ module.exports = {
       },
     },
     plugins: [
-      require('@tailwindcss/forms'),
+      require('@tailwindcss/forms', '@tailwindcss/aspect-ratio'),
     ],
   };
   
