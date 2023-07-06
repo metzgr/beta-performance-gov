@@ -9,9 +9,13 @@ Beta.Performance.gov displays U.S. federal agencies two-year priority goals and 
 
 ## Setup
 1. Install Hugo using [these instructions](https://gohugo.io/installation/)
-2. Run `npm install npm@latest -g` to get dependencies to build the project
-3. Run `npm install tailwindcss@latest` to install Tailwind
-4. Run `hugo server` to build the site
+2. Clone the repo
+    ```
+    git clone https://github.com/metzgr/beta-performance-gov.git
+    ```
+3. Run `npm install npm@latest -g` to get dependencies to build the project
+4. Run `npm install tailwindcss@latest` to install Tailwind
+5. Run `hugo server` to build the site
 
 ## Structure
 Click [here](https://gohugo.io/getting-started/) for the full Hugo documentation
