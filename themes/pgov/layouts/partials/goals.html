@@ -6,78 +6,89 @@
     {{ $codes = merge $codes (dict .Code .Name) }}
 {{ end }}
 
+<!-- Intro text -->
+<div class="flex justify-center">
+    <div>
+      <h1 class="text-2xl font-bold ml-5 mt-5" style="font-family: 'Public Sans', sans-serif;">Performance.gov Goals</h1>
+      <p class="text-base ml-5 mt-3" style="font-family: 'Public Sans', sans-serif;">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+        Ut enim ad minim veniam</p>
+    </div>
+</div>
 
-<!-- Search bar -->
-<div class="relative z-0 flex flex-1 items-center justify-center px-2">
-  <div class="w-full max-w-7xl mt-6">
+  <!-- Search bar -->
+<div class="relative flex justify-center">
+  <div class="mt-6">
     <label for="search" class="sr-only">Search</label>
     <div class="relative">
-      <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
+      <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3 text-zinc-600">
         <svg class="h-5 w-5 text-zinc-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
           <path fill-rule="evenodd" d="M9 3.5a5.5 5.5 0 100 11 5.5 5.5 0 000-11zM2 9a7 7 0 1112.452 4.391l3.328 3.329a.75.75 0 11-1.06 1.06l-3.329-3.328A7 7 0 012 9z" clip-rule="evenodd" />
         </svg>
       </div>
-      <input id="search" name="search" class="block w-full rounded-full border-0 bg-slate-100 py-1.5 pl-10 pr-3 text-zinc-300 placeholder:text-zinc-400 focus:bg-white focus:text-zinc-900 focus:ring-0 focus:placeholder:text-zinc-500 sm:text-sm sm:leading-6" placeholder="Search" type="search">
+      <input id="search" name="search" style="width:35rem;" class="w-96 block rounded-full border-0 bg-slate-300 py-1.5 pl-10 pr-3 text-zinc-600 placeholder:text-zinc-600 focus:bg-white focus:text-zinc-900 focus:ring-0 focus:placeholder:text-zinc-500 sm:text-sm sm:leading-6" placeholder="Search" type="search">
     </div>
   </div>
 </div>
 
-
-<!-- Agencies filter dropdown -->
-<div class="flex flex-row relative justify-center lg:max-w-7xl mt-2 mx-auto mt-8">
+<!-- Filter Dropdowns -->
+<div class="flex flex-row relative mt-8 ml-5 justify-center">
+  <!-- Agencies -->
   <div class="flex relative rounded-md relative">
-    <button type="button" class="agency-filter-button relative inline-flex items-center rounded-l-md bg-white px-3 py-2 text-sm font-normal italic text-gray-900 ring-1 ring-inset ring-gray-300 focus:z-10" style="width:255px"><i class="fa-sharp fa-solid fa-building-columns mr-2.5"></i>Select Agency</button>
-    <button type="button" onClick="toggleAgenciesFilterDropdown()" class="relative inline-flex items-center rounded-r-md bg-white px-2 py-2 text-black ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-10" id="option-menu-button" aria-expanded="true" aria-haspopup="true">
+    <i class="fa-sharp fa-solid fa-building-columns mr-2.5" style="position:relative;top:10px;left:40px;z-index:1;"></i>
+    <button type="button" class="agency-filter-button relative inline-flex items-center rounded-full bg-white pr-3 pl-10 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 focus:z-10" style="width:255px; font-family:'Public Sans', sans-serif;">Agencies</button>
+    <button type="button" onClick="toggleAgenciesFilterDropdown()" style="left:-40px" class="relative inline-flex items-center z-10 rounded-full px-1 py-1 text-black focus:z-10" id="option-menu-button" aria-expanded="true" aria-haspopup="true">
       <span class="sr-only">Open options</span>
       <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
         <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd" />
       </svg>
     </button>
 
-    <div class="absolute -ml-px block">    
-        <div class="agencies-filter-dropdown hidden absolute z-10 -mr-1 mt-10 w-64 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="option-menu-button" tabindex="-1">
+    <div class="absolute ml-6 block">    
+        <div style="border-radius:1.375rem" class="agencies-filter-dropdown hidden absolute z-10 -mr-1 mt-10 w-64 origin-top-right bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="option-menu-button" tabindex="-1">
           <div class="py-1 h-72 overflow-auto" role="none"> 
-            {{ range .Site.Data.codes }}
+            
+            {{ range sort .Site.Data.codes "Name" "asc"}}
               <a href="#" id="{{ .Name }}" onClick="displaySelectedAgency()" class="select-agency text-gray-700 block px-4 py-2 text-sm hover:bg-slate-200" role="menuitem" tabindex="-1" id="option-menu-item-0">{{ .Name }}</a>
             {{ end }}
           </div>
         </div>
     </div>
   </div>
-    <!-- Goal Status filter dropdown -->
-    <div class="flex relative rounded-md relative">
-      <button type="button" class="relative inline-flex items-center rounded-l-md bg-white px-3 py-2 text-sm font-normal italic text-gray-900 ring-1 ring-inset ring-gray-300 focus:z-10 ml-2.5" style="width:255px"><i class="fa-solid fa-flag mr-2.5"></i>Select Goal Status</button>
-      <button type="button" onClick="toggleStatusFilterDropdown()" class="relative inline-flex items-center rounded-r-md bg-white px-2 py-2 text-black ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-10" id="option-menu-button" aria-expanded="true" aria-haspopup="true">
-        <span class="sr-only">Open options</span>
-        <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-          <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd" />
-        </svg>
-      </button>
-    
-      <div class="absolute -ml-px block">    
-          <div class="status-filter-dropdown hidden absolute z-10 -mr-1 mt-10 ml-2.5 w-64 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="option-menu-button" tabindex="-1">
-            <div class="py-1 h-72 overflow-auto" role="none"> 
-              {{ range .Site.Data.status }} 
-                <a href="#" id="{{ .Name }}" onClick="displaySelectedStatus()" class="select-status text-gray-700 block px-4 py-2 text-sm hover:bg-slate-200" role="menuitem" tabindex="-1" id="option-menu-item-0">{{ .goal_status }}</a>
-              {{ end }}                             
-            </div>
-          </div>
-      </div>
-    </div>
-  
-    <!-- Topics filter dropdown -->
-  <div class="flex relative rounded-md relative">
-    <button type="button" class="relative inline-flex items-center rounded-l-md bg-white px-3 py-2 text-sm font-normal italic text-gray-900 ring-1 ring-inset ring-gray-300 focus:z-10 ml-2.5" style="width:255px"><i class="fa-sharp fa-solid fa-hashtag mr-2.5"></i>Select Topic</button>
-    <button type="button" onClick="toggleTopicsFilterDropdown()" class="relative inline-flex items-center rounded-r-md bg-white px-2 py-2 text-black ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-10" id="option-menu-button" aria-expanded="true" aria-haspopup="true">
+  <!-- Goal Status -->
+  <div class="flex relative rounded-md relative" style="margin-left:-10px">
+    <i class="fa-solid fa-flag mr-2.5" style="position:relative;top:10px;left:48px;z-index:1;"></i>
+    <button type="button" class="status-filter-button relative inline-flex items-center rounded-full bg-white pr-3 pl-10 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 focus:z-10 ml-2.5" style="width:255px; font-family:'Public Sans', sans-serif;">Goal Status</button>
+    <button type="button" onClick="toggleStatusFilterDropdown()" style="left:-40px" class="relative inline-flex items-center z-10 px-2 py-2 text-black focus:z-10" id="option-menu-button" aria-expanded="true" aria-haspopup="true">
       <span class="sr-only">Open options</span>
       <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
         <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd" />
       </svg>
     </button>
   
-    <div class="absolute -ml-px block">    
-        <div class="topic-filter-dropdown hidden absolute z-10 -mr-1 mt-10 ml-2.5 w-64 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="option-menu-button" tabindex="-1">
-          <div class="py-1 h-72 overflow-auto" role="none"> 
+    <div class="absolute ml-6 block">    
+        <div style="border-radius:1.375rem" class="status-filter-dropdown hidden absolute z-10 -mr-1 mt-10 ml-2.5 w-64 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="option-menu-button" tabindex="-1">
+          <div class="py-1 h-52 overflow-auto" role="none"> 
+            {{ range sort .Site.Data.status "goal_status" "asc" }} 
+              <a href="#" id="{{ .Name }}" onClick="displaySelectedStatus()" class="select-status text-gray-700 block px-4 py-2 text-sm hover:bg-slate-200" role="menuitem" tabindex="-1" id="option-menu-item-0">{{ .goal_status }}</a>
+            {{ end }}                             
+          </div>
+        </div>
+    </div>
+  </div>
+  <!-- Topics -->
+  <div class="flex relative rounded-md relative" style="margin-left:-20px">
+    <i class="fa-sharp fa-solid fa-hashtag mr-2.5" style="position:relative;top:10px;left:48px;z-index:1;"></i>
+    <button type="button" class="topics-filter-button relative inline-flex items-center rounded-full bg-white pr-3 pl-10 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 focus:z-10 ml-2.5" style="width:255px; font-family:'Public Sans', sans-serif;">Topics</button>
+    <button type="button" onClick="toggleTopicsFilterDropdown()" style="left:-40px" class="relative inline-flex items-center z-10 px-2 py-2 text-black focus:z-10" id="option-menu-button" aria-expanded="true" aria-haspopup="true">
+      <span class="sr-only">Open options</span>
+      <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+        <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd" />
+      </svg>
+    </button>
+  
+    <div class="absolute ml-6 block">    
+        <div style="border-radius:1.375rem" class="topics-filter-dropdown hidden absolute z-10 -mr-1 mt-10 ml-2.5 w-64 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="option-menu-button" tabindex="-1">
+          <div class="py-1 h-72 overflow-auto" id="test" role="none"> 
             {{ range .Site.Data.tags }} 
               <a href="#" id="{{ .Name }}" onClick="displaySelectedTopic()" class="select-topic text-gray-700 block px-4 py-2 text-sm hover:bg-slate-200" role="menuitem" tabindex="-1" id="option-menu-item-0">{{ .name }}</a>
             {{ end }}                             
@@ -85,250 +96,265 @@
         </div>
       </div>
     </div>
-    <button class="clear-filter text-xs text-sky-900 font-semibold italic ml-3.5 hover:text-slate-900">Clear filters<i class="fa-solid fa-xmark ml-1.5"></i></button>
+   <div class="filter-tooltip-icon">
+    <i class="fa-solid fa-circle-info fa-lg" style="margin-top: 18px; margin-left: -20px;"></i>
+  </div> 
+  <span class="filter-tooltip hidden" style="position:absolute;background-color:black;color:white;padding:5px;border-radius:4px;">This is a tooltip</span>
+    <button class="clear-filter text-xs text-sky-900 font-semibold ml-3.5 hover:text-slate-900">CLEAR FILTERS<i class="fa-solid fa-xmark ml-1.5"></i></button>  
 </div>
-
-      
   
+<hr style="margin-top:30px">
 
 <!-- Filter Tags -->
-<div class="flex justify-center pt-6 space-x-4">
-    <button id="All" onClick="category_click(this.id)" class="tag w-16 justify-center text-center border border-sky-900 hover:bg-sky-900 hover:text-white inline-flex items-center rounded-full px-2 py-1 text-xs font-medium text-sky-950 ring-1 ring-inset ring-gray-500/10">All</button>
-    <button id="Climate" onClick="category_click(this.id)" class="tag w-16 justify-center text-center border border-sky-900 hover:bg-sky-900 hover:text-white inline-flex items-center rounded-full bg-gray-50 px-2 py-1 text-xs font-medium text-sky-950 ring-1 ring-inset ring-gray-500/10">Climate</button>
-    <button id="Equity" onClick="category_click(this.id)" class="tag w-16 justify-center text-center border border-sky-900 hover:bg-sky-900 hover:text-white inline-flex items-center rounded-full bg-gray-50 px-2 py-1 text-xs font-medium text-sky-950 ring-1 ring-inset ring-gray-500/10">Equity</button>
-    <button id="Economic development, Economic security & policy" onClick="category_click(this.id)" class="tag w-18 justify-center text-center border border-sky-900 hover:bg-sky-900 hover:text-white inline-flex items-center rounded-full bg-gray-50 px-2 py-1 text-xs font-medium text-sky-950 ring-1 ring-inset ring-gray-500/10">Economy</button>
-    <button id="Domestic health, Global health, Medicare" onClick="category_click(this.id)" class="tag w-18 justify-center text-center border border-sky-900 hover:bg-sky-900 hover:text-white inline-flex items-center rounded-full bg-gray-50 px-2 py-1 text-xs font-medium text-sky-950 ring-1 ring-inset ring-gray-500/10">Healthcare</buttonn>    
+<div class="flex pt-8 space-x-4 lg:max-w-7xl relative" style="margin-right:auto; margin-left:auto;top:30px;left:30px;">
+  <p class="font-bold text-sm pt-1" style="font-family: 'Public Sans', sans-serif;">Featured Topics</p>
+  <i class="fa-solid fa-circle-info" style="margin-top: 5px; margin-left: 10px;"></i>
+    <button id="All" onClick="category_click(this.id)" class="tag w-16 justify-center text-center border border-gray-800 hover:bg-gray-800 hover:text-white inline-flex items-center rounded-full px-2 py-1 text-xs font-medium text-gray-800 ring-1 ring-inset ring-gray-500/10">All</button>
+    <button id="Climate" onClick="category_click(this.id)" class="tag w-16 justify-center text-center border border-gray-800 hover:bg-gray-800 hover:text-white inline-flex items-center rounded-full bg-gray-50 px-2 py-1 text-xs font-medium text-gray-800 ring-1 ring-inset ring-gray-500/10">Climate</button>
+    <button id="Equity" onClick="category_click(this.id)" class="tag w-16 justify-center text-center border border-gray-800 hover:bg-gray-800 hover:text-white inline-flex items-center rounded-full bg-gray-50 px-2 py-1 text-xs font-medium text-gray-800 ring-1 ring-inset ring-gray-500/10">Equity</button>
+    <button id="Economic development, Economic security & policy" onClick="category_click(this.id)" class="tag w-18 justify-center text-center border border-gray-800 hover:bg-gray-800 hover:text-white inline-flex items-center rounded-full bg-gray-50 px-2 py-1 text-xs font-medium text-gray-800 ring-1 ring-inset ring-gray-500/10">Economy</button>
+    <button id="Domestic health, Global health, Medicare" onClick="category_click(this.id)" class="tag w-18 justify-center text-center border border-gray-800 hover:bg-gray-800 hover:text-white inline-flex items-center rounded-full bg-gray-50 px-2 py-1 text-xs font-medium text-gray-800 ring-1 ring-inset ring-gray-500/10">Healthcare</buttonn>    
 </div>
 
 <!-- Card Component-->
 <div id="all-cards" >
-    <div class="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-16 lg:max-w-7xl lg:px-8" >
+    <div class="mx-auto max-w-2xl px-4 pt-4 pb-8 sm:px-6 lg:max-w-7xl lg:px-8" >
       <p id="output" class="text-right sans text-sm text-slate-600 font-medium">90 of 90 total results</p>
       <div class="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:gap-x-8">
-        {{ $matchingIds := 0 }}
-      
+        {{ $matchingIds := 0 }}       
         {{ range $goal := .Site.Data.goals }}  
           {{ if eq $goal.goal_type "APG" }}
             {{ $goal_description_string := printf "%s" .goal_description }}
-            <!-- <div class="select-card"> -->
-                <div class="group relative cards" name="All, {{ $goal.applied_tags }}" data-value="{{ index $codes $goal.agency_code }}">
-                    <div dir="ltr" style="height:406px;" class="bg-white border border-slate-300 rounded-2xl min-h-80 aspect-h-1 aspect-w-1 w-full overflow-hidden lg:aspect-none group-hover:opacity-90">                           
-                      <div class="grid" style="grid-template-columns: 267px 190px;">                                                                   
-                        {{ if eq $goal.goal_type "APG" }}
-                        <span style="width:fit-content; height:26px; font-family: 'Public Sans', sans-serif;" class="inline-flex items-center rounded-full bg-gray-50 px-2 py-0.5 text-sm font-medium text-gray-700 ring-1 ring-inset ring-gray-500/10 ms-6 my-4">2YRGoal</span>
-                        {{ end }}
-                        <span id="cardStatus" style="width:fit-content; height:26px; margin-left:0; font-family: 'Public Sans', sans-serif;" class="status inline-flex items-center gap-x-1.5 rounded-full bg-gray-100 px-2 py-1 text-sm font-medium text-slate-700 ms-8 my-4" data-value="{{ $goal.goal_status }}">
-                         
-                            {{ $goal.goal_status }}
-                            <a href="{{ $goal.url_pgov_agency_12 }}" id="hidden-goal-link"></a>
-                        </span>
-                      </div>    
-                      <p id="cardName"  class="text-lg ms-6 mx-4 my-2 font-semibold" data-value="{{ $goal.goal_name }}" style="font-family: 'Public Sans', sans-serif;">{{ $goal.goal_name | truncate 64 }}</p> 
-                      <p id="cardDescription" class="text-base mx-6 my-4 text-slate-900" data-value="{{ $goal.goal_description }}" style="font-family: 'Public Sans', sans-serif;">{{ $goal.goal_description | truncate 165 }}</p>
-                      <hr style="width:88%; margin:auto;" class="border-slate-300"/>
-                      <div class="flex flex-row mx-6 mb-2 mt-3">
-                        <i class="fa-solid fa-people-group mr-2 mt-1"></i>
-                        <p class="text-base font-semibold mr-2" style="font-family: 'Public Sans', sans-serif;">Leaders</p>
-                        <div class="flex -space-x-1 overflow-hidden ml-auto">
-                          <img class="inline-block h-6 w-6 rounded-full ring-2 ring-white" src="https://images.unsplash.com/photo-1491528323818-fdd1faba62cc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="">
-                          <img class="inline-block h-6 w-6 rounded-full ring-2 ring-white" src="https://images.unsplash.com/photo-1550525811-e5869dd03032?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="">
-                          <img class="inline-block h-6 w-6 rounded-full ring-2 ring-white" src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2.25&w=256&h=256&q=80" alt="">
-                          <img class="inline-block h-6 w-6 rounded-full ring-2 ring-white" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="">
-                        </div>
-                      </div>
-                      <hr style="width:88%; margin:auto;" class="border-slate-300"/>
-                      <div class="flex flex-row mx-6 mt-3 mb-2">
-                        <i class="fa-regular fa-calendar mr-2 mt-1"></i>
-                        <p class="text-base font-semibold mr-3 text-slate-900" style="font-family: 'Public Sans', sans-serif;">Duration</p>
-                        <div class="flex -space-x-1 overflow-hidden ml-auto">
-                          {{ $startYrStr := printf "%s" $goal.date_start_fy }}
-                          {{ $endYrStr := printf "%s" $goal.date_end_fy }}
-                          {{ $shortStartYr := substr $startYrStr 2 }}
-                          {{ $shortEndYr := substr $endYrStr 2 }}
-                          <p class="text-base text-slate-600" style="font-family: 'Public Sans', sans-serif;">FY{{ $shortStartYr }}-{{ $shortEndYr }}</p>                      
-                        </div>
-                      </div>
-                      <hr style="width:88%; margin:auto;" class="border-slate-300"/>
-                      <div class="flex flex-row mx-6 mt-3 mb-4">
-                        <i class="fa-solid fa-list-check mr-2 mt-1"></i>
-                        <p class="text-base font-semibold mr-2 text-slate-900" style="font-family: 'Public Sans', sans-serif;">Targets</p>
-                        <div class="flex -space-x-1 overflow-hidden ml-auto">                      
-                          {{ $targetData := getJSON "/data/target.json" }}
-                          {{ $matchingItems := where $targetData ".related_goal_id" $goal.goal_id }}
-                          {{ $matchingIds = (len $matchingItems) }}
-                          {{ $targetMet := 0 }}
-                          {{ range $totalMet := $matchingItems }}
-                            {{ if eq $totalMet.progress_pct_target_status "Target met" }}
-                              {{ $targetMet = add $targetMet 1 }}
-                            {{ end }}
+            {{ $targetData := getJSON "/data/target.json" }}
+            {{ $matchingItems := where $targetData ".related_goal_id" $goal.goal_id }}
+            {{ $matchingIds = (len $matchingItems) }}    
+            {{ $targetMet := 0 }}         
+            {{ $finalPercentage := 0 }}
+            {{ range $totalMet := $matchingItems }}
+              {{ if eq $totalMet.progress_pct_target_status "Target met" }}
+                {{ $targetMet = add $targetMet 1 }}                              
+              {{ end }}                                        
+            {{ end }} 
+            <div class="group relative cards" name="All, {{ $goal.applied_tags }}" data-value="{{ index $codes $goal.agency_code}}">                
+              <div dir="ltr" style="height:326px;" class="bg-white border border-slate-300 min-h-80 aspect-h-1 aspect-w-1 w-full overflow-hidden lg:aspect-none group-hover:opacity-90">                           
+                    <!-- {{ if eq $goal.goal_type "APG" }}
+                    <span style="width:fit-content; height:26px; font-family: 'Public Sans', sans-serif;" class="inline-flex items-center rounded-full bg-gray-50 px-2 py-0.5 text-sm font-medium text-gray-700 ring-1 ring-inset ring-gray-500/10 ms-6 my-4">2YRGoal</span>
+                    {{ end }} -->
+                    <div class="flex flex-row pr-5 ms-6">  
+                      {{ $lowercaseOrg := lower $goal.organization_abbreviation }}                                            
+                      {{ range $index, $logo := $logos }}  
+                        {{ $imgAlt := path.Base $logo.Name }}
+                        {{ $removeImgType := replaceRE `(\.[^.]+)$` "" $imgAlt }}     
+                          {{ if eq $removeImgType $lowercaseOrg }}                       
+                            <img src="{{ $logo.Permalink }}" alt="{{ $removeImgType }}" style="width:37px; height:37px;" class="mr-3 mt-3"/>                                                                                                       
                           {{ end }}
-                          <p class="text-base text-slate-600" style="font-family: 'Public Sans', sans-serif;">{{ $targetMet }} out of {{ $matchingIds }} met</p>                      
-                        </div>
-                      </div>
+                        {{ end }}                       
+                        <div style="height:50px;">
+                          <p id="cardAgency" name="{{ index $codes $goal.agency_code }}" data-value="{{ $goal.organization_name }}" class="agency-name font-semibold text-base my-5 inline-block" style="font-family: 'Public Sans', sans-serif;text-transform: uppercase;">
+                              {{ $goal.organization_abbreviation }}
+                          </p>
+                        </div>                                       
+                        <p class="hidden hidden-abbr">{{ $lowercaseOrg }}</p> 
+                        <span id="cardStatus" style="width:fit-content; margin-left:auto; height:26px; font-family: 'Public Sans', sans-serif; background-color:rgba(86, 199, 86, 1); color: white;" class="status inline-flex items-center gap-x-1.5 rounded-full bg-gray-100 px-2 py-1 text-sm font-medium text-slate-700 ms-6 mt-4" data-value="{{ $goal.goal_status }}"> 
+                          {{ $goal.goal_status }}
+                          <a href="{{ $goal.url_pgov_agency_12 }}" id="hidden-goal-link"></a>
+                        </span>                 
                     </div>    
-                    <div class="flex">  
-                        {{ $lowercaseOrg := lower $goal.organization_abbreviation }}                                            
-                        {{ range $index, $logo := $logos }}  
-                          {{ $imgAlt := path.Base $logo.Name }}
-                          {{ $removeImgType := replaceRE `(\.[^.]+)$` "" $imgAlt }}     
-                            {{ if eq $removeImgType $lowercaseOrg }}                       
-                                <img src="{{ $logo.Permalink }}" alt="{{ $removeImgType }}" style="width:37px; height:37px;" class="mx-2 my-3"/>                                                                         
-                            {{ end }}
-                          {{ end }}                       
-                      <p id="cardAgency" name="{{ index $codes $goal.agency_code }}" class="agency-name font-semibold text-base ml-1 my-5 inline-block text-slate-900" style="font-family: 'Public Sans', sans-serif;">{{ index $codes $goal.agency_code }}</p>                                       
-                      <p class="hidden hidden-abbr">{{ $lowercaseOrg }}</p>                   
-                          {{ $numbers := (slice 103 144 185 314 713 238 117) }}
-                          {{ $shuffled := shuffle $numbers }}
-                          {{ range $index, $number := $shuffled }}
-                            {{ if mod $index 7 | eq 0 }}
-                              <i class="fa-solid fa-eye mt-6 ml-auto mr-1"></i>
-                              <span class="my-5 mr-1" style="font-family: 'Public Sans', sans-serif;">{{ index $shuffled $index }}</span>
-                            {{ end }}
-                          {{ end }}                    
-                    </div> 
-                    <!-- Renders Overlay -->
-                  <div id="overlay" class="hidden target-overlay">
-                    <div class="relative z-10" role="dialog" aria-modal="true">
-                      <div class="fixed inset-0 hidden bg-black transition-opacity md:block" style="opacity:85%"></div>
-                      <div class="fixed inset-0 z-10 overflow-y-auto">
-                        <div class="flex min-h-full items-stretch justify-center text-center md:items-center md:px-2 lg:px-4">
-                          <div class="flex w-full transform text-left text-base transition m-auto mb-8 mt-7 md:max-w-2xl md:px-4 lg:max-w-6xl" style="flex-direction:column">
-                            <div style="width: 100%; position: relative;">
-                              {{ $lowercaseOrg := lower $goal.organization_abbreviation }}                                            
-                              {{ range $index, $logo := $logos }}  
-                                {{ $imgAlt := path.Base $logo.Name }}
-                                {{ $removeImgType := replaceRE `(\.[^.]+)$` "" $imgAlt }}     
-                                  {{ if eq $removeImgType $lowercaseOrg }}                       
-                                      <img src="{{ $logo.Permalink }}" alt="{{ $removeImgType }}" style="width:47px; height:47px; display:inline-block;" class="my-3 mr-2.5"/>                                                                         
-                                  {{ end }}
-                                {{ end }}
-                                <p class="overlay-goal-agency text-base font-semibold sans my-4 inline-block text-white uppercase" style="width: fit-content; font-family: 'Public Sans', sans-serif;"></p>
-                                {{ if eq $goal.goal_status "On Track"}}                                 
+                  
+                  <p id="cardName"  class="text-lg ms-6 mx-4 mb-2 mt-5 font-semibold" data-value="{{ $goal.goal_name }}" style="font-family: 'Public Sans', sans-serif;">{{ $goal.goal_name | truncate 64 }}</p>                  
+                  <p id="cardDescription" class="text-base mx-6 my-4 text-slate-900" data-value="{{ $goal.goal_description }}" style="font-family: 'Public Sans', sans-serif;">{{ $goal.goal_description | truncate 76 }}</p>
+                  
+                  <hr style="width:88%; margin:auto;" class="border-slate-300"/>
+                  
+                  <!-- Duration and Target Met -->
+                  <div class="flex flex-row mx-6 mt-3 mb-2">
+                    <i class="fa-regular fa-calendar mr-2 mt-1"></i>
+                    <p class="text-base font-semibold mr-3 text-slate-900" style="font-family: 'Public Sans', sans-serif;">Duration</p>
+                    <div class="flex -space-x-1 overflow-hidden ml-auto">
+                      {{ $startYrStr := printf "%s" $goal.date_start_fy }}
+                      {{ $endYrStr := printf "%s" $goal.date_end_fy }}
+                      {{ $shortStartYr := substr $startYrStr 2 }}
+                      {{ $shortEndYr := substr $endYrStr 2 }}
+                      <p class="text-base text-slate-600" style="font-family: 'Public Sans', sans-serif;">FY{{ $shortStartYr }}-{{ $shortEndYr }}</p>                      
+                    </div>
+                  </div>
+                  <hr style="width:88%; margin:auto;" class="border-slate-300"/>
+                  <div class="flex flex-row mx-6 mt-3 mb-4">
+                    <i class="fa-solid fa-list-check mr-2 mt-1"></i>
+                    <p class="text-base font-semibold mr-2 text-slate-900" style="font-family: 'Public Sans', sans-serif;">Targets</p>
+                    <div class="flex flex-col -space-x-1 ml-auto">                                                          
+                      <p class="text-sm text-slate-600 mb-1" style="font-family: 'Public Sans', sans-serif;">{{ $targetMet }} out of {{ $matchingIds }} met</p>                   
+                    </div>                   
+                  </div>
+                  
+                  <!-- Target Progress Bar -->
+                  <div style="width:60%;margin-right:22px;float:right;margin-top:-12px;" class="target-progress">
+                    <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700 bar-container mt-1" style="height: 15px;">
+                      {{ if and (ne $targetMet 0) (ne $matchingIds 0) }}
+                      {{ $totalPercent := div (mul (float $targetMet) 100) (float $matchingIds) }}
+                      {{ $finalPercentage := printf "%.1f" $totalPercent }} 
+                          <div class="progress-shell">
+                            <div class="bg-green-500 h-2.5 rounded-full progress-bar" style="height: 15px;"></div>                                  
+                            <p class="text-base hidden target-percentage">{{ $finalPercentage }}%</p>          
+                          </div>       
+                      {{ end }}                    
+                    </div>
+                  </div>               
+              </div> 
+
+                <!-- Renders Overlay -->
+              <div id="overlay" class="hidden target-overlay">
+                <div class="relative z-10" role="dialog" aria-modal="true">
+                  <div class="fixed inset-0 hidden bg-black transition-opacity md:block" style="opacity:85%"></div>
+                  <div class="fixed inset-0 z-10 overflow-y-auto">
+                    <div class="flex min-h-full items-stretch justify-center text-center md:items-center md:px-2 lg:px-4">
+                      <div class="flex w-full transform text-left text-base transition m-auto mb-8 mt-7 md:max-w-2xl md:px-4 lg:max-w-6xl" style="flex-direction:column">
+                        <div style="width: 100%; position: relative;">
+                          {{ $lowercaseOrg := lower $goal.organization_abbreviation }}                                            
+                          {{ range $index, $logo := $logos }}  
+                            {{ $imgAlt := path.Base $logo.Name }}
+                            {{ $removeImgType := replaceRE `(\.[^.]+)$` "" $imgAlt }}     
+                              {{ if eq $removeImgType $lowercaseOrg }}                       
+                                  <img src="{{ $logo.Permalink }}" alt="{{ $removeImgType }}" style="width:47px; height:47px; display:inline-block;" class="my-3 mr-2.5"/>                                                                         
+                              {{ end }}
+                          {{ end }}
+                          <!-- Goal Status Tag -->
+                          <p class="overlay-goal-agency text-base font-semibold sans my-4 inline-block text-white uppercase" style="width: fit-content; font-family: 'Public Sans', sans-serif;"></p>
+                            {{ if eq $goal.goal_status "On Track"}}                                 
                                 <span class="ml-4 overlay-goal-status status inline-block items-center gap-x-1.5 rounded-full bg-green-100 px-2 py-1 text-xs font-semibold text-white my-4" style="background-color:#56c756; width: fit-content; font-family: 'Public Sans', sans-serif;">
                                   <svg class="h-1.5 w-1.5 fill-green-500" viewBox="0 0 6 6" aria-hidden="true"><circle cx="3" cy="3" r="3" /></svg>   
                                 </span>
-                                {{ end}}
-                                {{ if eq $goal.goal_status "Unavailable"}}                                 
+                            {{ end}}
+                            {{ if eq $goal.goal_status "Unavailable"}}                                 
                                 <span class="ml-4 overlay-goal-status status inline-block items-center gap-x-1.5 rounded-full bg-gray-100 px-2 py-1 text-xs font-medium text-slate-700 my-4" style="width: fit-content; font-family: 'Public Sans', sans-serif;">
                                   <svg class="h-1.5 w-1.5 fill-gray-400" viewBox="0 0 6 6" aria-hidden="true"><circle cx="3" cy="3" r="3" /></svg>   
                                 </span>
-                                {{ end}}
-                                {{ if eq $goal.goal_status "Ahead"}}                                 
+                            {{ end}}
+                            {{ if eq $goal.goal_status "Ahead"}}                                 
                                 <span class="ml-4 overlay-goal-status status inline-block items-center gap-x-1.5 rounded-full bg-blue-100 px-2 py-1 text-xs font-medium text-slate-700 my-4" style="width: fit-content; font-family: 'Public Sans', sans-serif;">
                                   <svg class="h-1.5 w-1.5 fill-blue-500" viewBox="0 0 6 6" aria-hidden="true"><circle cx="3" cy="3" r="3" /></svg>   
                                 </span>
-                                {{ end}}
-                                {{ if eq $goal.goal_status "Delayed" "Blocked" }}                                 
+                            {{ end}}
+                            {{ if eq $goal.goal_status "Delayed" "Blocked" }}                                 
                                 <span class="ml-4 overlay-goal-status status inline-block items-center gap-x-1.5 rounded-full bg-red-100 px-2 py-1 text-xs font-medium text-slate-700 my-4" style="width: fit-content; font-family: 'Public Sans', sans-serif;">
                                   <svg class="h-1.5 w-1.5 fill-red-500" viewBox="0 0 6 6" aria-hidden="true"><circle cx="3" cy="3" r="3" /></svg>   
                                 </span>
-                                {{ end}}
-                            </div>
-                            <div style="top:10px" class="relative w-full items-center bg-white px-4 pb-8 pt-14 sm:px-6 sm:pt-8 md:p-6 lg:p-8">
-                              <div class="absolute hidden pt-2 sm:block" style="top:-63px; right:-46px;">
-                                <button type="button" id="closeOverlay" class="rounded-full bg-slate-700 hover:bg-white hover:text-slate-700 text-white hover:text-black" style="font-weight:700;opacity:100%;font-size:17px; width:40px;height:40px;opacity:80%">
-                                  X
-                                </button>
-                              </div>
-                              <div   class="sm:flex sm:items-start">
-                                <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left">
-                                  
+                            {{ end}}
+                        </div>
+                        <div style="top:10px" class="relative w-full items-center bg-white px-4 pb-8 pt-14 sm:px-6 sm:pt-8 md:p-6 lg:p-8">
+                          <!-- Close Overlay Button -->
+                          <div class="absolute hidden pt-2 sm:block" style="top:-63px; right:-46px;">
+                              <button type="button" id="closeOverlay" class="rounded-full bg-slate-700 hover:bg-white hover:text-slate-700 text-white hover:text-black" style="font-weight:700;opacity:100%;font-size:17px; width:40px;height:40px;opacity:80%">
+                                X
+                              </button>
+                          </div>
+                          <!-- Goal Leader Icons Right-Side Panel -->
+                          <div class="sm:flex sm:items-start">
+                              <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left">                     
                                   <a href="" target="_blank" class="overlay-goal-button">
                                     <button type="button" style="width: 50px;height: 50px;position: absolute;right: -100px;" class="mt-5 mr-5 float-right bg-slate-700 text-white hover:bg-white hover:text-slate-700 mt-3 inline-flex w-full justify-center rounded-full mt-2 px-3 py-1 text-sm font-semibold sm:w-auto">
                                       <i class="fa-sharp fa-solid fa-arrow-right" style="font-size: 28px; margin-top: 8px"></i>
                                     </button>
                                     <span class="text-xs text-white font-semibold" style="font-family: 'Public Sans', sans-serif; position: absolute;right: -110px;top: 110px;">Go to Goal Profile</span>
-                                  </a>
-
+                                  </a>                                    
+                                  <img class="inline-block h-6 w-6 rounded-full ring-2 ring-white" style="width: 50px;height: 50px;position: absolute;right:-80px;top:170px;" src="https://images.unsplash.com/photo-1491528323818-fdd1faba62cc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="">
+                                  <span class="text-xs text-white font-semibold" style="font-family: 'Public Sans', sans-serif; position: absolute;right: -82px;top: 235px;">John Doe</span>
+                                  <span class="text-xs text-white font-semibold" style="font-family: 'Public Sans', sans-serif; position: absolute;right: -79px;top: 251px;">Director</span>   
+                                  <img class="inline-block h-6 w-6 rounded-full ring-2 ring-white" style="width: 50px;height: 50px;position: absolute;right:-80px;top:300px;" src="https://images.unsplash.com/photo-1550525811-e5869dd03032?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="">                      
+                                  <span class="text-xs text-white font-semibold" style="font-family: 'Public Sans', sans-serif; position: absolute;right: -82px;top: 365px;">Jane Doe</span>
+                                  <span class="text-xs text-white font-semibold" style="font-family: 'Public Sans', sans-serif; position: absolute;right: -80px;top: 381px;">Director</span> 
+                                  <img class="inline-block h-6 w-6 rounded-full ring-2 ring-white" style="width: 50px;height: 50px;position: absolute;right:-80px;top:430px;" src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2.25&w=256&h=256&q=80" alt="">                      
+                                  <span class="text-xs text-white font-semibold" style="font-family: 'Public Sans', sans-serif; position: absolute;right: -91px;top: 495px;">Sam Smith</span>
+                                  <span class="text-xs text-white font-semibold" style="font-family: 'Public Sans', sans-serif; position: absolute;right: -108px;top: 511px;">Assistant Director</span> 
                                   <h3 class="overlay-goal-name text-xl font-semibold leading-6" id="modal-title" style="font-family: 'Public Sans', sans-serif;"></h3>               
                                   <div class="mt-2">
                                     <p class="overlay-goal-description text-base text-slate-900" style="font-family: 'Public Sans', sans-serif;"></p>
                                   </div>
-                                </div>     
-                              </div>
-                              <div class="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:gap-x-8">
-                                  {{ $targets := getJSON "/data/target.json" }}
-                                  {{ range $matchingData := where $targets ".related_goal_id" "in" $goal.goal_id }}
-                                  <div class="group relative cards" name="All, {{ $goal.applied_tags }}" data-value="{{ index $codes $goal.agency_code }}">
-                                      <div dir="ltr" style="height:496px;" class="bg-white border border-slate-300 rounded-2xl min-h-80 aspect-h-1 aspect-w-1 w-full overflow-hidden lg:aspect-none">
-                                        <div>
-                                            <div class="grid" style="grid-template-columns: 213px 190px;"> 
-                                              <span style="width:fit-content; height:26px; font-family: 'Public Sans', sans-serif;" class="inline-flex items-center rounded-full bg-gray-50 px-2 py-0.5 text-sm font-medium ring-1 ring-inset ring-gray-500/10 ms-4 my-4">Target</span>  
-                                              {{ if eq .progress_pct_target_status "Target met"}}
-                                                <span id="cardStatus" style="width:fit-content; height:26px; font-family: 'Public Sans', sans-serif; background-color:#56c756;" class="status inline-flex items-center gap-x-1.5 rounded-full px-2 py-1 text-xs font-medium text-white ms-2 my-4">
-                                                  <svg class="h-1.5 w-1.5 fill-white" viewBox="0 0 6 6" aria-hidden="true"><circle cx="3" cy="3" r="3" /></svg>
-                                                    Acheived    
-                                              </span>
-                                              {{ end }}
-                                              {{ if eq .progress_pct_target_status "Target not met"}}
-                                                <span id="cardStatus" style="width:fit-content; height:26px; font-family: 'Public Sans', sans-serif;" class="status inline-flex items-center gap-x-1.5 rounded-full bg-yellow-100 px-2 py-1 text-xs font-medium text-slate-700 ms-2 my-4">
-                                                  <svg class="h-1.5 w-1.5 fill-yellow-500" viewBox="0 0 6 6" aria-hidden="true"><circle cx="3" cy="3" r="3" /></svg>
-                                                  In Progress   
-                                              </span>
-                                              {{ end }}
-                                              {{ if eq .progress_pct_target_status "Target undefined"}}
-                                                <span id="cardStatus" style="width:fit-content; height:26px; font-family: 'Public Sans', sans-serif;" class="status inline-flex items-center gap-x-1.5 rounded-full bg-gray-100 px-2 py-1 text-xs font-medium text-slate-700 ms-2 my-4">
-                                                  <svg class="h-1.5 w-1.5 fill-gray-500" viewBox="0 0 6 6" aria-hidden="true"><circle cx="3" cy="3" r="3" /></svg>
-                                                  Baselining   
-                                              </span>
-                                              {{ end }}
-                                            </div>
-                                            <p class="text-base ms-4 me-4 my-2 font-semibold" style="font-family: 'Public Sans', sans-serif;">{{ $matchingData.indicator_type }}</p>
-                                            <p class="text-sm text-slate-900 ms-4 me-4" style="font-family: 'Public Sans', sans-serif;">{{ $matchingData.target }}</p>
-                                            <p class=" text-sm ms-4 me-4 my-2 font-semibold" style="font-family: 'Public Sans', sans-serif;">Indicator</p>
-                                            <p class="text-sm text-slate-900 ms-4 me-4" style="font-family: 'Public Sans', sans-serif;">{{ $matchingData.indicator}}</p>
-                                            <hr style="width:90%; margin:auto; margin-top: 8px;" class="border-slate-300"/>
-                                            <div class="text-xs ms-4 me-4 mt-2 mb-2 flex justify-between" style="font-family: 'Public Sans', sans-serif;">
-                                              <p class="font-semibold">As of</p>
-                                              <p class="text-slate-900 ">FY23 Q1</p>
-                                            </div>
-                                        </div>
-                                        <div class="bg-slate-50 h-full mt-1 pt-3.5">
-                                            <div style="width:75%; margin:auto; margin-top:30px;">
-                                              <hr class="border-slate-300 mt-2" />
-                                                <span class="text-xs font-semibold me-4 mt-1 m-auto align-bottom" style="font-family: 'Public Sans', sans-serif;">Start value</span>
-                                                <span class="text-xs me-4 mt-2 m-auto align-bottom" style="font-family: 'Public Sans', sans-serif; float:right">{{ .value_start }}</span>
-                                              <hr class="border-slate-300 mt-2" />
-                                                <span class="text-xs font-semibold me-4 mt-1 m-auto align-bottom" style="font-family: 'Public Sans', sans-serif;">Target value</span>
-                                                <span class="text-xs me-4 mt-2 m-auto align-bottom" style="font-family: 'Public Sans', sans-serif; float:right">{{ .value_target }}</span>
-                                              <hr class="border-slate-300 mt-2" />
-                                                <span class="text-xs font-semibold me-4 mt-1 m-auto align-bottom" style="font-family: 'Public Sans', sans-serif;">Current value</span>
-                                                <span class="text-xs me-4 mt-2 m-auto align-bottom" style="font-family: 'Public Sans', sans-serif; float:right">{{ .value_current }}</span>
-                                            </div>
-                                        </div>
+                              </div>     
+                          </div>
+                          <!-- Target Cards -->
+                          <div class="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:gap-x-8">
+                              {{ $targets := getJSON "/data/target.json" }}
+                              {{ range $matchingData := where $targets ".related_goal_id" "in" $goal.goal_id }}
+                                <div class="group relative cards" name="All, {{ $goal.applied_tags }}" data-value="{{ index $codes $goal.agency_code }}">
+                                    <div dir="ltr" style="height:496px;" class="bg-white border border-slate-300 rounded-2xl min-h-80 aspect-h-1 aspect-w-1 w-full overflow-hidden lg:aspect-none">
+                                      <div>
+                                          <div class="grid" style="grid-template-columns: 213px 190px;"> 
+                                            <span style="width:fit-content; height:26px; font-family: 'Public Sans', sans-serif;" class="inline-flex items-center rounded-full bg-gray-50 px-2 py-0.5 text-sm font-medium ring-1 ring-inset ring-gray-500/10 ms-4 my-4">Target</span>  
+                                            {{ if eq .progress_pct_target_status "Target met"}}
+                                              <span id="cardStatus" style="width:fit-content; height:26px; font-family: 'Public Sans', sans-serif; background-color:#56c756;" class="status inline-flex items-center gap-x-1.5 rounded-full px-2 py-1 text-xs font-medium text-white ms-2 my-4">
+                                                <svg class="h-1.5 w-1.5 fill-white" viewBox="0 0 6 6" aria-hidden="true"><circle cx="3" cy="3" r="3" /></svg>
+                                                  Acheived    
+                                            </span>
+                                            {{ end }}
+                                            {{ if eq .progress_pct_target_status "Target not met"}}
+                                              <span id="cardStatus" style="width:fit-content; height:26px; font-family: 'Public Sans', sans-serif;" class="status inline-flex items-center gap-x-1.5 rounded-full bg-yellow-100 px-2 py-1 text-xs font-medium text-slate-700 ms-2 my-4">
+                                                <svg class="h-1.5 w-1.5 fill-yellow-500" viewBox="0 0 6 6" aria-hidden="true"><circle cx="3" cy="3" r="3" /></svg>
+                                                In Progress   
+                                            </span>
+                                            {{ end }}
+                                            {{ if eq .progress_pct_target_status "Target undefined"}}
+                                              <span id="cardStatus" style="width:fit-content; height:26px; font-family: 'Public Sans', sans-serif;" class="status inline-flex items-center gap-x-1.5 rounded-full bg-gray-100 px-2 py-1 text-xs font-medium text-slate-700 ms-2 my-4">
+                                                <svg class="h-1.5 w-1.5 fill-gray-500" viewBox="0 0 6 6" aria-hidden="true"><circle cx="3" cy="3" r="3" /></svg>
+                                                Baselining   
+                                            </span>
+                                            {{ end }}
+                                          </div>
+                                          <p class="text-base ms-4 me-4 my-2 font-semibold" style="font-family: 'Public Sans', sans-serif;">{{ $matchingData.indicator_type }}</p>
+                                          <p class="text-sm text-slate-900 ms-4 me-4" style="font-family: 'Public Sans', sans-serif;">{{ $matchingData.target }}</p>
+                                          <p class=" text-sm ms-4 me-4 my-2 font-semibold" style="font-family: 'Public Sans', sans-serif;">Indicator</p>
+                                          <p class="text-sm text-slate-900 ms-4 me-4" style="font-family: 'Public Sans', sans-serif;">{{ $matchingData.indicator}}</p>
+                                          <hr style="width:90%; margin:auto; margin-top: 8px;" class="border-slate-300"/>
+                                          <div class="text-xs ms-4 me-4 mt-2 mb-2 flex justify-between" style="font-family: 'Public Sans', sans-serif;">
+                                            <p class="font-semibold">As of</p>
+                                            <p class="text-slate-900 ">FY23 Q1</p>
+                                          </div>
                                       </div>
-                                  </div>  
-                                  {{ end }} 
-                              </div>                                   
-                          </div>
-                          </div>
+                                      <div class="bg-slate-50 h-full mt-1 pt-3.5">
+                                          <div style="width:75%; margin:auto; margin-top:30px;">
+                                            <hr class="border-slate-300 mt-2" />
+                                              <span class="text-xs font-semibold me-4 mt-1 m-auto align-bottom" style="font-family: 'Public Sans', sans-serif;">Start value</span>
+                                              <span class="text-xs me-4 mt-2 m-auto align-bottom" style="font-family: 'Public Sans', sans-serif; float:right">{{ .value_start }}</span>
+                                            <hr class="border-slate-300 mt-2" />
+                                              <span class="text-xs font-semibold me-4 mt-1 m-auto align-bottom" style="font-family: 'Public Sans', sans-serif;">Target value</span>
+                                              <span class="text-xs me-4 mt-2 m-auto align-bottom" style="font-family: 'Public Sans', sans-serif; float:right">{{ .value_target }}</span>
+                                            <hr class="border-slate-300 mt-2" />
+                                              <span class="text-xs font-semibold me-4 mt-1 m-auto align-bottom" style="font-family: 'Public Sans', sans-serif;">Current value</span>
+                                              <span class="text-xs me-4 mt-2 m-auto align-bottom" style="font-family: 'Public Sans', sans-serif; float:right">{{ .value_current }}</span>
+                                          </div>
+                                      </div>
+                                    </div>
+                                </div>  
+                              {{ end }} 
+                          </div>                                   
                         </div>
                       </div>
                     </div>
-                  </div> 
+                  </div>
                 </div>
-                     
-              <!-- </div>                                                                   -->
+              </div> 
+            </div>                         
           {{ end }}               
         {{ end }}
       </div>
     </div>
 </div>
 
-
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script>
-  // const cards = document.querySelectorAll(".cards");
   const selectCard = document.querySelectorAll(".cards");
   const clearFilters = document.querySelector('.clear-filter');
   const overlay = document.querySelector("#overlay");
   const closeOverlay = document.querySelector("#closeOverlay");
   const agencyFilterButton = document.querySelector(".agency-filter-button");
   const agencyFilterDropdown = document.querySelector(".agencies-filter-dropdown");
+  const statusFilterButton = document.querySelector(".status-filter-button");
   const statusFilterDropdown = document.querySelector(".status-filter-dropdown");
-  const topicFilterDropdown = document.querySelector(".topic-filter-dropdown");
+  const topicFilterDropdown = document.querySelector(".topics-filter-dropdown");
+  const topicFilterButton = document.querySelector(".topics-filter-button");
+  const progressShell = document.querySelectorAll(".progress-shell");
 
-
+  // Overlay Popup
   selectCard.forEach((item) => {
       item.addEventListener("click", () => {   
         const goalAgency = item.querySelector(".overlay-goal-agency");
@@ -337,7 +363,7 @@
         const goalDescription = item.querySelector(".overlay-goal-description");
         const goalButton = item.querySelector(".overlay-goal-button");
 
-        goalAgency.textContent = item.querySelector("#cardAgency").innerHTML;
+        goalAgency.textContent = item.querySelector("#cardAgency").getAttribute("data-value");
         goalName.textContent = item.querySelector("#cardName").getAttribute("data-value");
         goalStatus.textContent = item.querySelector("#cardStatus").getAttribute("data-value");
         goalDescription.textContent = item.querySelector("#cardDescription").getAttribute("data-value");
@@ -352,44 +378,29 @@
       })
   })
 
+  // Target Progress Bar
+  progressShell.forEach((item) => {
+      const progressBar = item.querySelector(".progress-bar");
+      const percentage = item.querySelector(".target-percentage");
+      const percentInnerHTML = percentage.innerHTML;
+      progressBar.style.width = percentInnerHTML;  
+  })
+
+  // Clear all filters
   clearFilters.addEventListener('click', function() {
       const showAll = document.querySelectorAll("div[name*=All]");
       showAll.forEach((item) => {
         item.style.display = 'block'
       });
-      agencyFilterButton.innerHTML = "Select Agency";
+      agencyFilterButton.innerHTML = "Agencies";
+      statusFilterButton.innerHTML = "Goal Status";
+      topicFilterButton.innerHTML = "Topics";
   })
 
-
-// Perform this function on Agencies filter click
-
+// Agency filter dropdown
   function toggleAgenciesFilterDropdown() {
     agencyFilterDropdown.classList.toggle("hidden");
   }
-
-  function toggleStatusFilterDropdown() {
-    statusFilterDropdown.classList.toggle("hidden");
-  }
-
-  function toggleTopicsFilterDropdown() {
-    topicFilterDropdown.classList.toggle("hidden");
-  }
-
-  // document.addEventListener("click", function(event) {
-  //   var targetElement = event.target;
-
-  //   var isClickedInsideDropdown = agencyFilterDropdown.contains(targetElement);
-
-  //   if(!isClickedInsideDropdown) {
-  //     agencyFilterDropdown.classList.add("hidden");
-        //  agencyFilterDropdown.style.display='none';
-  //   }
-  // })
-
-  // function closeGoalFilterDropdown() {
-  //   var filterButton = document.querySelector(".goals-filter");
-  //   filterButton.classList.toggle("hidden");
-  // }
 
   function displaySelectedAgency() {
     const selectAgency = document.querySelectorAll(".select-agency");
@@ -397,9 +408,9 @@
 
     selectAgency.forEach((item) => {
       item.addEventListener("click", function() {
-      var selectedValue = item.innerHTML;
-      agencyFilterButton.innerHTML = selectedValue;
-    
+        var selectedValue = item.innerHTML;
+        agencyFilterButton.innerHTML = selectedValue;
+      
         cards.forEach((item) => {
           if (item.getAttribute('data-value') === selectedValue) {
             item.style.display = "block";
@@ -410,8 +421,61 @@
       })
     })
   }
+
+  //Goal status filter dropdown
+  function toggleStatusFilterDropdown() {
+    statusFilterDropdown.classList.toggle("hidden");
+  }
+
+  function displaySelectedStatus() {
+    const selectStatus = document.querySelectorAll(".select-status");
+    var cards = document.querySelectorAll(".cards");
+
+    selectStatus.forEach((item) => {
+      item.addEventListener("click", function() {
+        var selectedValue = item.innerHTML;
+        statusFilterButton.innerHTML = selectedValue;
+    
+        cards.forEach((item) => {
+          var goalText = item.querySelector(".status");
+          var goalAttribute = goalText.getAttribute('data-value');
+            if (goalAttribute === selectedValue) {
+              item.style.display = "block";
+            } else {
+              item.style.display = "none";
+            }
+          })
+      })
+    })
+  }
+
+  // Topics filter dropdown
+  function toggleTopicsFilterDropdown() {
+    topicFilterDropdown.classList.toggle("hidden");
+  }
+
+  function displaySelectedTopic() {
+    const selectTopic = document.querySelectorAll(".select-topic");
+    var cards = document.querySelectorAll(".cards");
+
+    selectTopic.forEach((item) => {
+      item.addEventListener("click", function() {
+        var selectedValue = item.innerHTML;
+        topicFilterButton.innerHTML = selectedValue;
+      
+        cards.forEach((item) => {
+          var topicAttribute = item.getAttribute('name');
+            if (topicAttribute.includes(selectedValue)) {
+              item.style.display = "block";
+            } else {
+              item.style.display = "none";
+            }
+        })
+      })
+    })
+  }
   
-   // Perform this function on tag filter click
+   // Tags filter (click functionality)
   function category_click(clicked_id) {
     category_hide_all();
     category_show_clicked(clicked_id);
@@ -478,7 +542,7 @@
     document.getElementById("output").innerHTML = `${counter} of ${total} total results`;
   }
 
-  // Set goal status designs
+  // Set goal status styles
   const statuses = document.querySelectorAll(".status");
   statuses.forEach((item) => {
     if(item.innerText === "On Track") {
@@ -492,6 +556,10 @@
     } else if (item.innerText === "Delayed" || item.innerText === "Blocked") {
       item.style.backgroundColor = " rgba(255, 220, 224, 1)";
       item.style.color ="rgb(51 65 85)";
+
+    } else if (item.innerText === "Unavailable") {
+      item.style.backgroundColor = "rgb(148 163 184)";
+      item.style.color ="rgb(255 255 255)";
 
     }
   }) 
