@@ -1,7 +1,7 @@
 # Beta.Performance.Gov
 
 ## About this Project
-Beta.Performance.gov displays U.S. federal agencies two-year priority goals and their strategic objectives. Users are able to explore the U.S. strategic portfolio and discover opportunities that impact what the Federal government achieved for the American people.
+Beta.Performance.gov is a proof of concept for innovating the Performance.gov website, which tracks U.S. federal agencies two-year priority goals and their strategic objectives. Users are able to explore the U.S. strategic portfolio and discover opportunities that impact what the Federal government achieved for the American people.
 
 ## Built With
 ![Hugo Logo](https://d33wubrfki0l68.cloudfront.net/c38c7334cc3f23585738e40334284fddcaf03d5e/2e17c/images/hugo-logo-wide.svg) 
